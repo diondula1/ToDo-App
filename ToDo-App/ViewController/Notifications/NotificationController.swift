@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SimpleNetworkCall
 
 class NotificationController: UIViewController {
     
@@ -94,8 +95,8 @@ extension NotificationController : UITableViewDelegate , UITableViewDataSource {
 //MARK: Network
 extension NotificationController {
     func fetchData(){
-        let nilInt: Int? = nil
-        Network.shared.fetchData(body: nilInt, httpMethodType: .Get, queryStringParamters: nil, urlString: "".getNotificationServerURL(projectId: "all")) { (results: Result<ReturnObject<[NotificationResponse]>, Error>) in
+        
+        Network.shared.get(urlString: "".getNotificationServerURL(projectId: "all")) { (results: Result<ReturnObject<[NotificationResponse]>, Error>) in
             switch(results){
             case .success(let data):
                 if data.success {
