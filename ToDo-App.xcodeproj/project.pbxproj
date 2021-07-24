@@ -53,6 +53,7 @@
 		6648F246261FA23A0085E497 /* NotificationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6648F245261FA23A0085E497 /* NotificationController.swift */; };
 		6648F24B261FA2E50085E497 /* SettingController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6648F24A261FA2E50085E497 /* SettingController.swift */; };
 		6648F251261FA3CF0085E497 /* MenuBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6648F250261FA3CF0085E497 /* MenuBarViewController.swift */; };
+		66A38B5326AC9D560088DEC0 /* SimpleNetworkCall in Frameworks */ = {isa = PBXBuildFile; productRef = 66A38B5226AC9D560088DEC0 /* SimpleNetworkCall */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -111,6 +112,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				66442D7F262A7A970094D253 /* SocketIO in Frameworks */,
+				66A38B5326AC9D560088DEC0 /* SimpleNetworkCall in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -332,6 +334,7 @@
 			name = "ToDo-App";
 			packageProductDependencies = (
 				66442D7E262A7A970094D253 /* SocketIO */,
+				66A38B5226AC9D560088DEC0 /* SimpleNetworkCall */,
 			);
 			productName = "ToDo-App";
 			productReference = 6648F220261F8FED0085E497 /* ToDo-App.app */;
@@ -362,6 +365,7 @@
 			mainGroup = 6648F217261F8FED0085E497;
 			packageReferences = (
 				66442D7D262A7A970094D253 /* XCRemoteSwiftPackageReference "socket.io-client-swift" */,
+				66A38B5126AC9D560088DEC0 /* XCRemoteSwiftPackageReference "SimpleNetworkCall" */,
 			);
 			productRefGroup = 6648F221261F8FED0085E497 /* Products */;
 			projectDirPath = "";
@@ -635,6 +639,14 @@
 				kind = branch;
 			};
 		};
+		66A38B5126AC9D560088DEC0 /* XCRemoteSwiftPackageReference "SimpleNetworkCall" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/diondula1/SimpleNetworkCall.git";
+			requirement = {
+				branch = main;
+				kind = branch;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -642,6 +654,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 66442D7D262A7A970094D253 /* XCRemoteSwiftPackageReference "socket.io-client-swift" */;
 			productName = SocketIO;
+		};
+		66A38B5226AC9D560088DEC0 /* SimpleNetworkCall */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 66A38B5126AC9D560088DEC0 /* XCRemoteSwiftPackageReference "SimpleNetworkCall" */;
+			productName = SimpleNetworkCall;
 		};
 /* End XCSwiftPackageProductDependency section */
 
