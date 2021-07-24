@@ -59,7 +59,7 @@ class AddProjectViewController: UIViewController {
             return
         }
         let requestProject = RequestProject(Title: title)
-        Network.shared.post(body: requestProject, urlString: "".postProjectServerURL()) { (results:Result<ReturnObject<Project>,Error>) in
+        Network.shared.post(body: requestProject, urlString: "".postProjectServerURL(),headerParameters: ["Authorization": UserDefaultsData.token]) { (results:Result<ReturnObject<Project>,Error>) in
             switch(results){
             case .success(let data):
                 if data.success {

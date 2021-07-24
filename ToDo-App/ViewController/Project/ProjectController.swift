@@ -46,7 +46,7 @@ class ProjectController: UIViewController {
     
     //MARK: NETWORK
     func callNetwork(){
-        Network.shared.get(urlString: "".getProjectServerURL()) { (results: Result<ReturnObject<[Project]>, Error>) in
+        Network.shared.get(urlString: "".getProjectServerURL(), headerParameters: ["Authorization": UserDefaultsData.token]) { (results: Result<ReturnObject<[Project]>, Error>) in
             switch(results){
             case .success(let data):
                 if data.success {

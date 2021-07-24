@@ -273,7 +273,7 @@ extension BoardCollectionViewController : SocketCardManagerDelegate {
 extension BoardCollectionViewController {
     
     func fetchNetworkData(){
-        Network.shared.get(urlString:  "".getCardsURL(projectId: project!.id)) {  (results: Result<ReturnObject<[Card]>, Error>) in
+        Network.shared.get(urlString:  "".getCardsURL(projectId: project!.id),headerParameters: ["Authorization": UserDefaultsData.token]) {  (results: Result<ReturnObject<[Card]>, Error>) in
             switch(results){
             case .success(let data):
                 if data.success {
@@ -298,7 +298,7 @@ extension BoardCollectionViewController {
     
     
     func postNetworkCategory(category: RequestCategory){
-        Network.shared.get(urlString: "".postCategoryURL(projectId: project!.id)) {  (results: Result<ReturnObject<Category>, Error>) in
+        Network.shared.get(urlString: "".postCategoryURL(projectId: project!.id),headerParameters: ["Authorization": UserDefaultsData.token]) {  (results: Result<ReturnObject<Category>, Error>) in
             switch(results){
             case .success(let data):
                 if data.success {
@@ -320,7 +320,7 @@ extension BoardCollectionViewController {
     
     
     func deleteNetworkCard(projectId: String, card: Card){
-        Network.shared.delete(urlString: "".deleteCardsURL(projectId: projectId, categoryId: card.categoryId, cardId: card.id))  { (results: Result<ReturnObject<Category>, Error>) in
+        Network.shared.delete(urlString: "".deleteCardsURL(projectId: projectId, categoryId: card.categoryId, cardId: card.id),headerParameters: ["Authorization": UserDefaultsData.token])  { (results: Result<ReturnObject<Category>, Error>) in
             switch(results){
             case .success(let data):
                 if data.success {
@@ -342,7 +342,7 @@ extension BoardCollectionViewController {
     
     func postNetworkMoveCard(projectId: String, oldCard: Card, newCategoryId: String){
         
-        Network.shared.post(body: oldCard, urlString: "".updateCardURL(projectId: projectId, categoryId: newCategoryId, newCategoryId: newCategoryId)) {  (results: Result<ReturnObject<Category>, Error>) in
+        Network.shared.post(body: oldCard, urlString: "".updateCardURL(projectId: projectId, categoryId: newCategoryId, newCategoryId: newCategoryId),headerParameters: ["Authorization": UserDefaultsData.token]) {  (results: Result<ReturnObject<Category>, Error>) in
             switch(results){
             case .success(let data):
                 if data.success {

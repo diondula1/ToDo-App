@@ -96,7 +96,7 @@ extension NotificationController : UITableViewDelegate , UITableViewDataSource {
 extension NotificationController {
     func fetchData(){
         
-        Network.shared.get(urlString: "".getNotificationServerURL(projectId: "all")) { (results: Result<ReturnObject<[NotificationResponse]>, Error>) in
+        Network.shared.get(urlString: "".getNotificationServerURL(projectId: "all"),headerParameters: ["Authorization": UserDefaultsData.token]) { (results: Result<ReturnObject<[NotificationResponse]>, Error>) in
             switch(results){
             case .success(let data):
                 if data.success {

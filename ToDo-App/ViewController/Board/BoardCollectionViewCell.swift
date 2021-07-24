@@ -92,7 +92,7 @@ class BoardCollectionViewCell: UICollectionViewCell {
     }
 
     func postNetworkCard(card: RequestCard,categoryID: String){
-        Network.shared.post(body: card, urlString: "".postCardsURL(projectId: projectId!, categoryId: categoryID)) {  (results: Result<ReturnObject<Card>, Error>) in
+        Network.shared.post(body: card, urlString: "".postCardsURL(projectId: projectId!, categoryId: categoryID),headerParameters: ["Authorization": UserDefaultsData.token]) {  (results: Result<ReturnObject<Card>, Error>) in
             switch(results){
             case .success(let data):
                 if data.success {
