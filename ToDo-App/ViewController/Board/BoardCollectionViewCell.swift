@@ -8,6 +8,7 @@
 
 import UIKit
 import MobileCoreServices
+import SimpleNetworkCall
 
 class BoardCollectionViewCell: UICollectionViewCell {
     let headercellid = "headercellid"
@@ -91,12 +92,11 @@ class BoardCollectionViewCell: UICollectionViewCell {
     }
 
     func postNetworkCard(card: RequestCard,categoryID: String){
-        
-        Network.shared.fetchData(body: card, httpMethodType: .Post, queryStringParamters: nil, urlString: "".postCardsURL(projectId: projectId!, categoryId: categoryID)) {  (results: Result<ReturnObject<Card>, Error>) in
+        Network.shared.post(body: card, urlString: "".postCardsURL(projectId: projectId!, categoryId: categoryID)) {  (results: Result<ReturnObject<Card>, Error>) in
             switch(results){
             case .success(let data):
                 if data.success {
-                    if let data = data.data {
+                    if let _ = data.data {
                        // self.addItem(card: data)
                     }else{
                         self.parentVC?.showAlert(alertText: "Something went wrong !!", alertMessage: "Server Error!!.")
@@ -231,7 +231,7 @@ extension BoardCollectionViewCell: UITableViewDropDelegate {
 
             coordinator.session.loadObjects(ofClass: Card.self) { (items) in
 
-                guard let card = items.first as? Card else {
+                guard let _ = items.first as? Card else {
                     return
                 }
 
@@ -253,7 +253,6 @@ extension BoardCollectionViewCell: UITableViewDropDelegate {
 //                    self.tableView.endUpdates()
                     
                     break
-
                 case (nil, .some(let destinationIndexPath)):
                     // Move data from a table to another table
 //                    self.removeSourceTableData(localContext: coordinator.session.localDragSession?.localContext)
@@ -263,8 +262,6 @@ extension BoardCollectionViewCell: UITableViewDropDelegate {
 //                    self.tableView.endUpdates()
                     self.updateNetwork(localContext: coordinator.session.localDragSession?.localContext,newCategoryId: self.category!.id)
                     break
-
-
                 case (nil, nil):
                     // Insert data from a table to another table
 //                    self.removeSourceTableData(localContext: coordinator.session.localDragSession?.localContext)
@@ -283,7 +280,7 @@ extension BoardCollectionViewCell: UITableViewDropDelegate {
     }
 
     func updateNetwork(localContext:Any? , newCategoryId: String){
-        if let (dataSource, sourceIndexPath, tableView) = localContext as? (Category, IndexPath, UITableView) ,let projectId = self.parentVC?.project?.id {
+        if let (dataSource, sourceIndexPath, _) = localContext as? (Category, IndexPath, UITableView) ,let projectId = self.parentVC?.project?.id {
 
             self.parentVC?.postNetworkMoveCard(projectId: projectId, oldCard: dataSource.cards[sourceIndexPath.row], newCategoryId: newCategoryId)
         }

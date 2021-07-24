@@ -8,6 +8,7 @@
 
 import UIKit
 import MobileCoreServices
+import SimpleNetworkCall
 
 
 class BoardCollectionViewController: UICollectionViewController, UICollectionViewDelegateFlowLayout {
@@ -43,7 +44,7 @@ class BoardCollectionViewController: UICollectionViewController, UICollectionVie
         
     }
     
-   
+    
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
         socket.stop()
@@ -51,7 +52,7 @@ class BoardCollectionViewController: UICollectionViewController, UICollectionVie
     override func viewWillAppear(_ animated: Bool) {
         setupDelegates()
     }
- 
+    
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
         super.viewWillTransition(to: size, with: coordinator)
         updateCollectionViewItem(with: size)
@@ -222,13 +223,13 @@ extension BoardCollectionViewController: UIDropInteractionDelegate {
                 return
             }
             
-            if let (dataSource, sourceIndexPath, tableView) = session.localDragSession?.localContext as? (Category, IndexPath, UITableView) {
+            if let (dataSource, sourceIndexPath, _) = session.localDragSession?.localContext as? (Category, IndexPath, UITableView) {
                 self.deleteNetworkCard(projectId: self.project!.id, card: dataSource.cards[sourceIndexPath.row])
                 
-//                tableView.beginUpdates()
-//                dataSource.cards.remove(at: sourceIndexPath.row)
-//                tableView.deleteRows(at: [sourceIndexPath], with: .automatic)
-//                tableView.endUpdates()
+                //                tableView.beginUpdates()
+                //                dataSource.cards.remove(at: sourceIndexPath.row)
+                //                tableView.deleteRows(at: [sourceIndexPath], with: .automatic)
+                //                tableView.endUpdates()
             }
         }
     }
@@ -236,7 +237,7 @@ extension BoardCollectionViewController: UIDropInteractionDelegate {
 
 //MARK: Socket
 extension BoardCollectionViewController : SocketCardManagerDelegate {
-
+    
     
     
     func didConnect() {
@@ -260,7 +261,7 @@ extension BoardCollectionViewController : SocketCardManagerDelegate {
     }
     
     func didReceive(moveCard: ResponseMoveCard) {
-//        print("Remove \(moveCard.oldCardId)")
+        //        print("Remove \(moveCard.oldCardId)")
         self.categories.first(where: {$0.id == moveCard.oldCard.categoryId})?.cards.removeAll(where: {$0.id == moveCard.oldCard.id})
         self.categories.first(where: {$0.id == moveCard.newCard.categoryId})?.cards.append(moveCard.newCard)
         self.collectionView.reloadData()
@@ -270,9 +271,9 @@ extension BoardCollectionViewController : SocketCardManagerDelegate {
 
 //MARK: Network
 extension BoardCollectionViewController {
+    
     func fetchNetworkData(){
-        let nilInt: Int? = nil
-        Network.shared.fetchData(body: nilInt, httpMethodType: .Get, queryStringParamters: nil, urlString: "".getCardsURL(projectId: project!.id)) {  (results: Result<ReturnObject<[Card]>, Error>) in
+        Network.shared.get(urlString:  "".getCardsURL(projectId: project!.id)) {  (results: Result<ReturnObject<[Card]>, Error>) in
             switch(results){
             case .success(let data):
                 if data.success {
@@ -295,15 +296,15 @@ extension BoardCollectionViewController {
         }
     }
     
+    
     func postNetworkCategory(category: RequestCategory){
-        
-        Network.shared.fetchData(body: category, httpMethodType: .Post, queryStringParamters: nil, urlString: "".postCategoryURL(projectId: project!.id)) {  (results: Result<ReturnObject<Category>, Error>) in
+        Network.shared.get(urlString: "".postCategoryURL(projectId: project!.id)) {  (results: Result<ReturnObject<Category>, Error>) in
             switch(results){
             case .success(let data):
                 if data.success {
-                    if let data = data.data {
+                    if let _ = data.data {
                         //                        self.addCategoryItem(category: data)
-//                        self.cancelCategoryAction()
+                        //                        self.cancelCategoryAction()
                     }else{
                         self.showAlert(alertText: "Something went wrong !!", alertMessage: "Server Error!!.")
                     }
@@ -319,8 +320,7 @@ extension BoardCollectionViewController {
     
     
     func deleteNetworkCard(projectId: String, card: Card){
-        let nilInt: Int? = nil
-        Network.shared.fetchData(body: nilInt, httpMethodType: .Delete, queryStringParamters: nil, urlString: "".deleteCardsURL(projectId: projectId, categoryId: card.categoryId, cardId: card.id)) {  (results: Result<ReturnObject<Category>, Error>) in
+        Network.shared.delete(urlString: "".deleteCardsURL(projectId: projectId, categoryId: card.categoryId, cardId: card.id))  { (results: Result<ReturnObject<Category>, Error>) in
             switch(results){
             case .success(let data):
                 if data.success {
@@ -339,9 +339,10 @@ extension BoardCollectionViewController {
         }
     }
     
+    
     func postNetworkMoveCard(projectId: String, oldCard: Card, newCategoryId: String){
         
-        Network.shared.fetchData(body: oldCard, httpMethodType: .Post, queryStringParamters: nil, urlString: "".updateCardURL(projectId: projectId, categoryId: newCategoryId, newCategoryId: newCategoryId)) {  (results: Result<ReturnObject<Category>, Error>) in
+        Network.shared.post(body: oldCard, urlString: "".updateCardURL(projectId: projectId, categoryId: newCategoryId, newCategoryId: newCategoryId)) {  (results: Result<ReturnObject<Category>, Error>) in
             switch(results){
             case .success(let data):
                 if data.success {

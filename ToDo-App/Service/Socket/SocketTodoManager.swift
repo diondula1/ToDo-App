@@ -86,7 +86,7 @@ struct SocketPosition: Codable {
     var y: Double
 }
 
-protocol SocketCardManagerDelegate: class {
+protocol SocketCardManagerDelegate: AnyObject {
     func didConnect()
     func didReceive(newCard: Card)
     func didReceive(newCategory: Category)

@@ -55,7 +55,7 @@ class SocketNotificationManager {
 }
 
 
-protocol SocketNotificationManagerDelegate: class {
+protocol SocketNotificationManagerDelegate: AnyObject {
     func didConnect()
     func didReceive(newNotification: NotificationResponse)
 }
