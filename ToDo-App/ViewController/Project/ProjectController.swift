@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SimpleNetworkCall
 
 class ProjectController: UIViewController {
     
@@ -45,8 +46,7 @@ class ProjectController: UIViewController {
     
     //MARK: NETWORK
     func callNetwork(){
-        let nilInt: Int? = nil
-        Network.shared.fetchData(body: nilInt, httpMethodType: .Get, queryStringParamters: nil, urlString: "".getProjectServerURL()) { (results: Result<ReturnObject<[Project]>, Error>) in
+        Network.shared.get(urlString: "".getProjectServerURL()) { (results: Result<ReturnObject<[Project]>, Error>) in
             switch(results){
             case .success(let data):
                 if data.success {
