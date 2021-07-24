@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SimpleNetworkCall
 
 class AddProjectViewController: UIViewController {
     
@@ -57,7 +58,8 @@ class AddProjectViewController: UIViewController {
         guard let title = titleTextField.text , !title.isEmpty else {
             return
         }
-        Network.shared.fetchData(body: RequestProject(Title: title), httpMethodType: .Post, queryStringParamters: nil, urlString: "".postProjectServerURL()) { (results: Result<ReturnObject<Project>, Error>)  in
+        let requestProject = RequestProject(Title: title)
+        Network.shared.post(body: requestProject, urlString: "".postProjectServerURL()) { (results:Result<ReturnObject<Project>,Error>) in
             switch(results){
             case .success(let data):
                 if data.success {
@@ -73,6 +75,7 @@ class AddProjectViewController: UIViewController {
                 print(error)
             }
         }
+     
     }
     
     

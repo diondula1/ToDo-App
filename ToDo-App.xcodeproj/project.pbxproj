@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		66442D19262638F50094D253 /* UserDefaultsData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66442D18262638F50094D253 /* UserDefaultsData.swift */; };
-		66442D1C262639010094D253 /* Network.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66442D1B262639010094D253 /* Network.swift */; };
 		66442D202626397C0094D253 /* ReturnObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66442D1F2626397C0094D253 /* ReturnObject.swift */; };
 		66442D2526263E360094D253 /* UIViewController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66442D2426263E360094D253 /* UIViewController+Extension.swift */; };
 		66442D2826263E690094D253 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66442D2726263E690094D253 /* User.swift */; };
@@ -58,7 +57,6 @@
 
 /* Begin PBXFileReference section */
 		66442D18262638F50094D253 /* UserDefaultsData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserDefaultsData.swift; sourceTree = "<group>"; };
-		66442D1B262639010094D253 /* Network.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Network.swift; sourceTree = "<group>"; };
 		66442D1F2626397C0094D253 /* ReturnObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReturnObject.swift; sourceTree = "<group>"; };
 		66442D2426263E360094D253 /* UIViewController+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extension.swift"; sourceTree = "<group>"; };
 		66442D2726263E690094D253 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
@@ -123,7 +121,6 @@
 			isa = PBXGroup;
 			children = (
 				66442D9B2631A7F50094D253 /* Socket */,
-				66442D1B262639010094D253 /* Network.swift */,
 				66442D18262638F50094D253 /* UserDefaultsData.swift */,
 				66442D41262664AD0094D253 /* UIColor.swift */,
 				66442D8C262B88D30094D253 /* SocketParser.swift */,
@@ -396,7 +393,6 @@
 				66442D67262A0B8A0094D253 /* UITextField+Extension.swift in Sources */,
 				66442D2826263E690094D253 /* User.swift in Sources */,
 				66442D2526263E360094D253 /* UIViewController+Extension.swift in Sources */,
-				66442D1C262639010094D253 /* Network.swift in Sources */,
 				66442D8A262B88460094D253 /* SocketTodoManager.swift in Sources */,
 				66442D5B2628BEBC0094D253 /* Notification.swift in Sources */,
 				66442D3F262663E60094D253 /* UIColor+Extension.swift in Sources */,

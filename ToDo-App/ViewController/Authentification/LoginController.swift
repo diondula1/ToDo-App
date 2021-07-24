@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SimpleNetworkCall
 
 class LoginController: UIViewController {
     
@@ -100,9 +101,8 @@ class LoginController: UIViewController {
                 self.showAlert(alertText: "Emty TextField", alertMessage: "Please Fill TextField!!")
                 return
             }
-            
-            
-            Network.shared.fetchData(body: RequestLogin(Username: userName, Password: password), httpMethodType: .Post, queryStringParamters: nil, urlString: "".getLoginServerURL()) { (results: Result<ReturnObject<User>,Error>) in
+            let requestLogin = RequestLogin(Username: userName, Password: password)
+            Network.shared.post(body: requestLogin, urlString: "".getLoginServerURL()) { (results: Result<ReturnObject<User>,Error>) in
                 switch(results){
                 case .failure(let err):
                     print(err)

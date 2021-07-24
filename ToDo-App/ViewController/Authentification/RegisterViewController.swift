@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SimpleNetworkCall
 
 class RegisterViewController: UIViewController {
     
@@ -95,9 +96,8 @@ class RegisterViewController: UIViewController {
                 self.showAlert(alertText: "Emty TextField", alertMessage: "Please Fill TextField!!")
                 return
             }
-            
-    
-            Network.shared.fetchData(body: RequestRegister(Name: name, Surname: surname, Username: username, Password: password), httpMethodType: .Post, queryStringParamters: nil, urlString: "".getRegisterServerURL()) { (results: Result<ReturnObject<User>,Error>) in
+            let requestRegister =  RequestRegister(Name: name, Surname: surname, Username: username, Password: password)
+            Network.shared.post(body: requestRegister, urlString: "".getRegisterServerURL()) { (results: Result<ReturnObject<User>,Error>) in
                 switch(results){
                 case .failure(let err):
                     print(err)
