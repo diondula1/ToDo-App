@@ -46,8 +46,6 @@ class LoginController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        
-        initialViewSettings()
         setupView()
         
         loginButton.addTarget(self, action: #selector(loginAction), for: .touchUpInside)
@@ -59,36 +57,6 @@ class LoginController: UIViewController {
             moveToMainView()
         }
         
-    }
-    
-    //MARK: Init
-    func initialViewSettings() {
-        self.view.backgroundColor = .white
-    }
-    
-    func setupView() {
-        
-        self.view.addSubview(userNameTextField)
-        self.view.addSubview(passwordTextField)
-        self.view.addSubview(loginButton)
-        self.view.addSubview(registerButton)
-        NSLayoutConstraint.activate([
-            userNameTextField.leadingAnchor.constraint(equalTo: self.view.layoutMarginsGuide.leadingAnchor,constant: 20),
-            userNameTextField.trailingAnchor.constraint(equalTo: self.view.layoutMarginsGuide.trailingAnchor,constant: -20),
-            userNameTextField.centerYAnchor.constraint(equalTo: self.view.centerYAnchor,constant: -100),
-            
-            passwordTextField.leadingAnchor.constraint(equalTo: self.view.layoutMarginsGuide.leadingAnchor,constant: 20),
-            passwordTextField.trailingAnchor.constraint(equalTo: self.view.layoutMarginsGuide.trailingAnchor,constant: -20),
-            passwordTextField.topAnchor.constraint(equalTo: userNameTextField.bottomAnchor,constant: 20),
-            
-            loginButton.leadingAnchor.constraint(equalTo: self.view.layoutMarginsGuide.leadingAnchor,constant: 20),
-            loginButton.trailingAnchor.constraint(equalTo: self.view.layoutMarginsGuide.trailingAnchor,constant: -20),
-            loginButton.topAnchor.constraint(equalTo: passwordTextField.bottomAnchor,constant: 20),
-            
-            registerButton.leadingAnchor.constraint(equalTo: self.view.layoutMarginsGuide.leadingAnchor,constant: 20),
-            registerButton.trailingAnchor.constraint(equalTo: self.view.layoutMarginsGuide.trailingAnchor,constant: -20),
-            registerButton.topAnchor.constraint(equalTo: loginButton.bottomAnchor,constant: 20),
-        ])
     }
     
     //MARK: Actions
@@ -119,7 +87,6 @@ class LoginController: UIViewController {
                     }else{
                         self.showAlert(alertText: "Server Error!", alertMessage: data.message)
                     }
-                    
                 }
             }
         }
@@ -146,3 +113,38 @@ class LoginController: UIViewController {
     }
 }
 
+extension LoginController : ViewCode {
+    
+    func buildViewHierarchy() {
+        self.view.addSubview(userNameTextField)
+        self.view.addSubview(passwordTextField)
+        self.view.addSubview(loginButton)
+        self.view.addSubview(registerButton)
+    }
+    
+    func setupConstraints() {
+        
+        NSLayoutConstraint.activate([
+            userNameTextField.leadingAnchor.constraint(equalTo: self.view.layoutMarginsGuide.leadingAnchor,constant: 20),
+            userNameTextField.trailingAnchor.constraint(equalTo: self.view.layoutMarginsGuide.trailingAnchor,constant: -20),
+            userNameTextField.centerYAnchor.constraint(equalTo: self.view.centerYAnchor,constant: -100),
+            
+            passwordTextField.leadingAnchor.constraint(equalTo: self.view.layoutMarginsGuide.leadingAnchor,constant: 20),
+            passwordTextField.trailingAnchor.constraint(equalTo: self.view.layoutMarginsGuide.trailingAnchor,constant: -20),
+            passwordTextField.topAnchor.constraint(equalTo: userNameTextField.bottomAnchor,constant: 20),
+            
+            loginButton.leadingAnchor.constraint(equalTo: self.view.layoutMarginsGuide.leadingAnchor,constant: 20),
+            loginButton.trailingAnchor.constraint(equalTo: self.view.layoutMarginsGuide.trailingAnchor,constant: -20),
+            loginButton.topAnchor.constraint(equalTo: passwordTextField.bottomAnchor,constant: 20),
+            
+            registerButton.leadingAnchor.constraint(equalTo: self.view.layoutMarginsGuide.leadingAnchor,constant: 20),
+            registerButton.trailingAnchor.constraint(equalTo: self.view.layoutMarginsGuide.trailingAnchor,constant: -20),
+            registerButton.topAnchor.constraint(equalTo: loginButton.bottomAnchor,constant: 20),
+        ])
+    }
+    
+    func setupAdditionalConfiguration() {
+        self.view.backgroundColor = .white
+    }
+    
+}

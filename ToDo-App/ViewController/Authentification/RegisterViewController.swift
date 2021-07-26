@@ -26,7 +26,7 @@ class RegisterViewController: UIViewController {
         textField.placeholder = "SurName"
         return textField
     }()
-     
+    
     var usernameTextField : UITextField = {
         var textField = UITextField()
         textField.translatesAutoresizingMaskIntoConstraints = false
@@ -53,42 +53,9 @@ class RegisterViewController: UIViewController {
     }()
     
     override func viewDidLoad() {
-        view.backgroundColor = .white
-        
         setupView()
         registerButton.addTarget(self, action: #selector(registerAction), for: .touchUpInside)
     }
-    
-    func setupView(){
-        self.view.addSubview(nameTextField)
-        self.view.addSubview(surnameTextField)
-        self.view.addSubview(usernameTextField)
-        self.view.addSubview(passwordTextField)
-        self.view.addSubview(registerButton)
-        
-        NSLayoutConstraint.activate([
-            nameTextField.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor, constant: 50),
-            nameTextField.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 20),
-            nameTextField.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -20),
-        
-            surnameTextField.topAnchor.constraint(equalTo: self.nameTextField.bottomAnchor, constant: 20),
-            surnameTextField.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 20),
-            surnameTextField.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -20),
-            
-            usernameTextField.topAnchor.constraint(equalTo: self.surnameTextField.bottomAnchor, constant: 20),
-            usernameTextField.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 20),
-            usernameTextField.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -20),
-            
-            passwordTextField.topAnchor.constraint(equalTo: self.usernameTextField.bottomAnchor, constant: 20),
-            passwordTextField.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 20),
-            passwordTextField.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -20),
-            
-            registerButton.topAnchor.constraint(equalTo: self.passwordTextField.bottomAnchor, constant: 40),
-            registerButton.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 20),
-            registerButton.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -20),
-        ])
-    }
-    
     
     @objc func registerAction(){
         if let name = nameTextField.text , let surname = surnameTextField.text,let username = usernameTextField.text ,  let password = passwordTextField.text{
@@ -135,3 +102,44 @@ class RegisterViewController: UIViewController {
 }
 
 
+extension RegisterViewController : ViewCode {
+    func buildViewHierarchy() {
+        self.view.addSubview(nameTextField)
+        self.view.addSubview(surnameTextField)
+        self.view.addSubview(usernameTextField)
+        self.view.addSubview(passwordTextField)
+        self.view.addSubview(registerButton)
+    }
+    
+    func setupConstraints() {
+        
+        
+        NSLayoutConstraint.activate([
+            nameTextField.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor, constant: 50),
+            nameTextField.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 20),
+            nameTextField.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -20),
+            
+            surnameTextField.topAnchor.constraint(equalTo: self.nameTextField.bottomAnchor, constant: 20),
+            surnameTextField.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 20),
+            surnameTextField.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -20),
+            
+            usernameTextField.topAnchor.constraint(equalTo: self.surnameTextField.bottomAnchor, constant: 20),
+            usernameTextField.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 20),
+            usernameTextField.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -20),
+            
+            passwordTextField.topAnchor.constraint(equalTo: self.usernameTextField.bottomAnchor, constant: 20),
+            passwordTextField.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 20),
+            passwordTextField.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -20),
+            
+            registerButton.topAnchor.constraint(equalTo: self.passwordTextField.bottomAnchor, constant: 40),
+            registerButton.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 20),
+            registerButton.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -20),
+        ])
+    }
+    
+    func setupAdditionalConfiguration() {
+        view.backgroundColor = .white
+    }
+    
+    
+}
