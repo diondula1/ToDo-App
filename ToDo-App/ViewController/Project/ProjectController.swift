@@ -22,26 +22,15 @@ class ProjectController: UIViewController {
     }()
     
     override func viewDidLoad() {
-        self.view.backgroundColor = .white
+        
         tableView.dataSource = self
         tableView.delegate = self
         tableView.register(ProjectCell.self, forCellReuseIdentifier: cellid)
+        
         setupView()
         callNetwork()
-        
-        self.navigationItem.rightBarButtonItem = UIBarButtonItem(image: .add, landscapeImagePhone: .add, style: .plain, target: self, action: #selector(addProjectAction))
     }
     
-    func setupView(){
-        self.view.addSubview(tableView)
-        
-        NSLayoutConstraint.activate([
-            tableView.topAnchor.constraint(equalTo: view.topAnchor),
-            tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
-            tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor)
-        ])
-    }
     
     
     //MARK: NETWORK
@@ -84,6 +73,29 @@ class ProjectController: UIViewController {
     
 }
 
+
+//MARK: SetupView
+extension ProjectController : ViewCode {
+    func buildViewHierarchy() {
+        self.view.addSubview(tableView)
+    }
+    
+    func setupConstraints() {
+        NSLayoutConstraint.activate([
+            tableView.topAnchor.constraint(equalTo: view.topAnchor),
+            tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+            tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor)
+        ])
+    }
+    
+    func setupAdditionalConfiguration() {
+        self.view.backgroundColor = .white
+        
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(image: .add, landscapeImagePhone: .add, style: .plain, target: self, action: #selector(addProjectAction))
+    }
+}
+
 //MARK: TableView
 extension ProjectController : UITableViewDataSource , UITableViewDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -113,3 +125,6 @@ extension ProjectController : UITableViewDataSource , UITableViewDelegate {
         return 70
     }
 }
+
+
+

@@ -70,6 +70,8 @@ extension SettingController : UITableViewDataSource , UITableViewDelegate {
     }
 }
 
+
+//MARK: SetupView
 extension SettingController : ViewCode {
     func setupView() {
         
