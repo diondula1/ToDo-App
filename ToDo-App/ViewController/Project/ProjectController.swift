@@ -25,7 +25,7 @@ class ProjectController: UIViewController {
         
         tableView.dataSource = self
         tableView.delegate = self
-        tableView.register(ProjectCell.self, forCellReuseIdentifier: cellid)
+        tableView.register(ProjectTableViewCell.self, forCellReuseIdentifier: cellid)
         
         setupView()
         callNetwork()
@@ -103,7 +103,7 @@ extension ProjectController : UITableViewDataSource , UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: cellid, for: indexPath) as! ProjectCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: cellid, for: indexPath) as! ProjectTableViewCell
         cell.dayLabel.text = list[indexPath.row].title
         return cell
     }

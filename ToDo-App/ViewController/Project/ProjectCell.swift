@@ -7,7 +7,7 @@
 
 import UIKit
 
-class ProjectCell: UITableViewCell {
+class ProjectTableViewCell: UITableViewCell {
     
     let cellView: UIView = {
         let view = UIView()
