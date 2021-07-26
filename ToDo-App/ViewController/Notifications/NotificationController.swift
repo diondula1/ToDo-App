@@ -12,6 +12,7 @@ class NotificationController: UIViewController {
     
     var list : [NotificationResponse] = []
     let cellid = "cellid"
+    
     var tableView : UITableView = {
         var tableView = UITableView()
         tableView.translatesAutoresizingMaskIntoConstraints = false
@@ -24,29 +25,17 @@ class NotificationController: UIViewController {
     override func viewDidLoad() {
         self.view.backgroundColor = .white
         
+        tableView.delegate = self
+        tableView.dataSource = self
+        tableView.register(NotificationTableViewCell.self, forCellReuseIdentifier: cellid)
+        
         setupView()
+        setupObserves()
         fetchData()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         tabBarController?.tabBar.removeBadge(index: 1)
-    }
-    
-    //MARK: Setup
-    func setupView(){
-        view.addSubview(tableView)
-        
-        NSLayoutConstraint.activate([
-            tableView.topAnchor.constraint(equalTo: view.topAnchor),
-            tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
-            tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-        ])
-        
-        tableView.delegate = self
-        tableView.dataSource = self
-        tableView.register(NotificationTableViewCell.self, forCellReuseIdentifier: cellid)
-        setupObserves()
     }
     
     private func setupObserves(){
@@ -62,16 +51,36 @@ class NotificationController: UIViewController {
         
         let object = notification.object as? [String: String] ?? [:]
         if let id = object["id"] , let messageDescription = object["description"], let projectTitle = object["projectName"], let date = object["date"]{
-       
-                let notification = NotificationResponse(id: id, messageDescription: messageDescription, project: Project(id: "", title: projectTitle), date: date)
-                
-                self.list.insert(notification, at: 0)
-                self.tableView.reloadData()
-            }
+            
+            let notification = NotificationResponse(id: id, messageDescription: messageDescription, project: Project(id: "", title: projectTitle), date: date)
+            
+            self.list.insert(notification, at: 0)
+            self.tableView.reloadData()
+        }
     }
     
     deinit {
         removeObserves()
+    }
+}
+
+//MARK: SetupView
+extension NotificationController : ViewCode {
+    func buildViewHierarchy() {
+        view.addSubview(tableView)
+    }
+    
+    func setupConstraints() {
+        NSLayoutConstraint.activate([
+            tableView.topAnchor.constraint(equalTo: view.topAnchor),
+            tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+            tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+        ])
+    }
+    
+    func setupAdditionalConfiguration() {
+        
     }
 }
 
@@ -116,3 +125,4 @@ extension NotificationController {
         }
     }
 }
+

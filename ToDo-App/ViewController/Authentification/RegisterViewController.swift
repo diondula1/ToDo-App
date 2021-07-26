@@ -10,7 +10,7 @@ import SimpleNetworkCall
 
 class RegisterViewController: UIViewController {
     
-    //
+
     var nameTextField : UITextField = {
         var textField = UITextField()
         textField.translatesAutoresizingMaskIntoConstraints = false
@@ -101,7 +101,7 @@ class RegisterViewController: UIViewController {
     
 }
 
-
+// MARK: SetupView
 extension RegisterViewController : ViewCode {
     func buildViewHierarchy() {
         self.view.addSubview(nameTextField)
