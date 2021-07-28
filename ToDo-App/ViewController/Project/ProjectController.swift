@@ -32,7 +32,6 @@ class ProjectController: UIViewController {
     }
     
     
-    
     //MARK: NETWORK
     func callNetwork(){
         Network.shared.get(urlString: "".getProjectServerURL(), headerParameters: ["Authorization": UserDefaultsData.token]) { (results: Result<ReturnObject<[Project]>, Error>) in
@@ -72,7 +71,6 @@ class ProjectController: UIViewController {
     }
     
 }
-
 
 //MARK: SetupView
 extension ProjectController : ViewCode {

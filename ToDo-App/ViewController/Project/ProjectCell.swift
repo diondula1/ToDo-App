@@ -36,26 +36,31 @@ class ProjectTableViewCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    
-    func setupView() {
+}
+
+extension ProjectTableViewCell : ViewCode {
+    func buildViewHierarchy() {
         addSubview(cellView)
         cellView.addSubview(dayLabel)
-        self.selectionStyle = .none
-        
+    }
+    
+    func setupConstraints() {
         NSLayoutConstraint.activate([
             cellView.topAnchor.constraint(equalTo: self.topAnchor, constant: 20),
             cellView.rightAnchor.constraint(equalTo: self.rightAnchor, constant: -10),
             cellView.leftAnchor.constraint(equalTo: self.leftAnchor, constant: 10),
-            cellView.bottomAnchor.constraint(equalTo: self.bottomAnchor)
+            cellView.bottomAnchor.constraint(equalTo: self.bottomAnchor),
+            
+            dayLabel.heightAnchor.constraint(equalTo: cellView.heightAnchor,constant: 20),
+            dayLabel.widthAnchor.constraint(equalTo: cellView.widthAnchor,constant: 20),
+            dayLabel.centerYAnchor.constraint(equalTo: cellView.centerYAnchor),
+            dayLabel.leftAnchor.constraint(equalTo: cellView.leftAnchor, constant: 20),
         ])
-        
-        dayLabel.heightAnchor.constraint(equalTo: cellView.heightAnchor,constant: 20).isActive = true
-        dayLabel.widthAnchor.constraint(equalTo: cellView.widthAnchor,constant: 20).isActive = true
-        dayLabel.centerYAnchor.constraint(equalTo: cellView.centerYAnchor).isActive = true
-        dayLabel.leftAnchor.constraint(equalTo: cellView.leftAnchor, constant: 20).isActive = true
-        
     }
-
+    
+    func setupAdditionalConfiguration() {
+        self.selectionStyle = .none
+    }
+    
     
 }
-

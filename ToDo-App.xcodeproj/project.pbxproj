@@ -175,16 +175,8 @@
 				66442D462627806E0094D253 /* BoardCollectionViewController.swift */,
 				66442D452627806E0094D253 /* BoardCollectionViewCell.swift */,
 				66442D5E2628FA6A0094D253 /* BoardAddCollectionViewCell.swift */,
-				66442D532627994A0094D253 /* Cells */,
 			);
 			path = Board;
-			sourceTree = "<group>";
-		};
-		66442D532627994A0094D253 /* Cells */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Cells;
 			sourceTree = "<group>";
 		};
 		66442D6D262A1EF90094D253 /* Request */ = {

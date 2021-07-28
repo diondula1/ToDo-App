@@ -35,22 +35,7 @@ class AddProjectViewController: UIViewController {
         addButton.addTarget(self, action: #selector(addProjectAction), for: .touchUpInside)
         setupView()
     }
-    
-    func setupView(){
-        view.addSubview(titleTextField)
-        view.addSubview(addButton)
-        NSLayoutConstraint.activate([
-            titleTextField.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor,constant: 50),
-            titleTextField.leadingAnchor.constraint(equalTo: view.leadingAnchor,constant: 20),
-            titleTextField.trailingAnchor.constraint(equalTo: view.trailingAnchor,constant: -20),
-            titleTextField.heightAnchor.constraint(equalToConstant: 50),
-            
-            addButton.topAnchor.constraint(equalTo: titleTextField.bottomAnchor,constant: 20),
-            addButton.leadingAnchor.constraint(equalTo: view.leadingAnchor,constant: 20),
-            addButton.trailingAnchor.constraint(equalTo: view.trailingAnchor,constant: -20),
-            addButton.heightAnchor.constraint(equalToConstant: 50),
-        ])
-    }
+
     
     //MARK: Action
     @objc
@@ -75,7 +60,7 @@ class AddProjectViewController: UIViewController {
                 print(error)
             }
         }
-     
+        
     }
     
     
@@ -84,5 +69,30 @@ class AddProjectViewController: UIViewController {
             didAddProject(project)
         }
         self.dismiss(animated: true, completion: nil)
+    }
+}
+
+extension AddProjectViewController : ViewCode {
+    func buildViewHierarchy() {
+        view.addSubview(titleTextField)
+        view.addSubview(addButton)
+    }
+    
+    func setupConstraints() {
+        NSLayoutConstraint.activate([
+            titleTextField.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor,constant: 50),
+            titleTextField.leadingAnchor.constraint(equalTo: view.leadingAnchor,constant: 20),
+            titleTextField.trailingAnchor.constraint(equalTo: view.trailingAnchor,constant: -20),
+            titleTextField.heightAnchor.constraint(equalToConstant: 50),
+            
+            addButton.topAnchor.constraint(equalTo: titleTextField.bottomAnchor,constant: 20),
+            addButton.leadingAnchor.constraint(equalTo: view.leadingAnchor,constant: 20),
+            addButton.trailingAnchor.constraint(equalTo: view.trailingAnchor,constant: -20),
+            addButton.heightAnchor.constraint(equalToConstant: 50),
+        ])
+    }
+    
+    func setupAdditionalConfiguration() {
+        
     }
 }
