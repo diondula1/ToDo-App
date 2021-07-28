@@ -6,6 +6,13 @@
 //  Copyright © 2019 Alfian Losari. All rights reserved.
 //
 
+
+//    var category = [
+//        Category(id: "1", title: "Todo", cards: [Card(id: "1", title: "Database Migration"), Card(id: "1", title: "Schema Design"), Card(id: "1", title: "Schema Design")]),
+//        Category(id: "1", title: "In Progress", cards: [Card(id: "1", title: "Database Migration"), Card(id: "1", title: "Schema Design"), Card(id: "1", title: "Schema Design")]),
+//        Category(id: "1", title: "Done", cards: [Card(id: "1", title: "Database Migration"), Card(id: "1", title: "Schema Design"), Card(id: "1", title: "Schema Design")]),
+//    ]
+
 import UIKit
 import MobileCoreServices
 import SimpleNetworkCall
@@ -18,11 +25,6 @@ class BoardCollectionViewController: UICollectionViewController, UICollectionVie
     let constAddCellId = "constAddCellID"
     var categories : [Category] = []
     var project : Project?
-    //    var category = [
-    //        Category(id: "1", title: "Todo", cards: [Card(id: "1", title: "Database Migration"), Card(id: "1", title: "Schema Design"), Card(id: "1", title: "Schema Design")]),
-    //        Category(id: "1", title: "In Progress", cards: [Card(id: "1", title: "Database Migration"), Card(id: "1", title: "Schema Design"), Card(id: "1", title: "Schema Design")]),
-    //        Category(id: "1", title: "Done", cards: [Card(id: "1", title: "Database Migration"), Card(id: "1", title: "Schema Design"), Card(id: "1", title: "Schema Design")]),
-    //    ]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -298,13 +300,12 @@ extension BoardCollectionViewController {
     
     
     func postNetworkCategory(category: RequestCategory){
-        Network.shared.get(urlString: "".postCategoryURL(projectId: project!.id),headerParameters: ["Authorization": UserDefaultsData.token]) {  (results: Result<ReturnObject<Category>, Error>) in
+        Network.shared.post(body:category,urlString: "".postCategoryURL(projectId: project!.id),headerParameters: ["Authorization": UserDefaultsData.token]) {  (results: Result<ReturnObject<Category>, Error>) in
             switch(results){
             case .success(let data):
                 if data.success {
                     if let _ = data.data {
-                        //                        self.addCategoryItem(category: data)
-                        //                        self.cancelCategoryAction()
+                        //Do Nothing wait from socket !!
                     }else{
                         self.showAlert(alertText: "Something went wrong !!", alertMessage: "Server Error!!.")
                     }

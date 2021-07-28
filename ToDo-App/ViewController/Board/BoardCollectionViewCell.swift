@@ -236,7 +236,7 @@ extension BoardCollectionViewCell: UITableViewDropDelegate {
                 }
 
                 switch (coordinator.items.first?.sourceIndexPath, coordinator.destinationIndexPath) {
-                case (.some(let sourceIndexPath), .some(let destinationIndexPath)):
+                case (.some(_), .some(_)):
                     // Same Table View
 //                    let updatedIndexPaths: [IndexPath]
 //                    if sourceIndexPath.row < destinationIndexPath.row {
@@ -253,7 +253,7 @@ extension BoardCollectionViewCell: UITableViewDropDelegate {
 //                    self.tableView.endUpdates()
                     
                     break
-                case (nil, .some(let destinationIndexPath)):
+                case (nil, .some(_)):
                     // Move data from a table to another table
 //                    self.removeSourceTableData(localContext: coordinator.session.localDragSession?.localContext)
 //                    self.tableView.beginUpdates()
