@@ -26,7 +26,8 @@ class BoardCollectionViewCell: UICollectionViewCell {
         tableView.translatesAutoresizingMaskIntoConstraints = false
         tableView.separatorStyle = .none
         tableView.rowHeight = UITableView.automaticDimension
-        tableView.estimatedRowHeight = 30
+        tableView.estimatedRowHeight = 50
+        
         return tableView
     }()
     

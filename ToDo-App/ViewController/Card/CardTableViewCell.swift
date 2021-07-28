@@ -47,10 +47,6 @@ class CardTableViewCell: UITableViewCell {
     
     func initView(){
         dayLabel.text = card?.title
-//        if card?.title == "Dula" || card?.title == "adion" || card?.title == "Dion"  {
-//            card?.cardDescription = "init(coder:) has not been implemented init(coder:) has not been implemented init(coder:) has not been implemented init(coder:) has not been implemented "
-//        }
-
         descriptionLabel.text = card?.cardDescription
     }
     
@@ -66,12 +62,11 @@ class CardTableViewCell: UITableViewCell {
         setupView()
         
         if (card?.cardDescription != nil){
-            descriptionHeightAnchor = descriptionLabel.heightAnchor.constraint(equalToConstant: 50)
+         
             descriptionHeightAnchor?.isActive = true
             descriptionLabel.isHidden = false
         }else{
             descriptionLabel.isHidden = true
-            descriptionHeightAnchor?.constant = 0
         }
     }
     
@@ -91,17 +86,14 @@ class CardTableViewCell: UITableViewCell {
 
         ])
         
-        dayLabel.topAnchor.constraint(equalTo: cellView.topAnchor, constant: 3).isActive = true
+        dayLabel.topAnchor.constraint(equalTo: cellView.topAnchor, constant: 10).isActive = true
         dayLabel.rightAnchor.constraint(equalTo: cellView.rightAnchor, constant: -3).isActive = true
-        dayLabel.heightAnchor.constraint(equalToConstant: 30).isActive = true
         dayLabel.leftAnchor.constraint(equalTo: cellView.leftAnchor, constant: 3).isActive = true
-        //                dayLabel.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -3).isActive = true
         
-        descriptionLabel.topAnchor.constraint(equalTo: self.dayLabel.bottomAnchor, constant: 1).isActive = true
+        descriptionLabel.topAnchor.constraint(equalTo: self.dayLabel.bottomAnchor, constant: 10).isActive = true
         descriptionLabel.rightAnchor.constraint(equalTo: self.rightAnchor, constant: -3).isActive = true
-
-        descriptionLabel.leftAnchor.constraint(equalTo: self.leftAnchor, constant: 3).isActive = true
-        descriptionLabel.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -3).isActive = true
+        descriptionLabel.leftAnchor.constraint(equalTo: self.leftAnchor, constant: 5).isActive = true
+        descriptionLabel.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -10).isActive = true
         
     }
     
