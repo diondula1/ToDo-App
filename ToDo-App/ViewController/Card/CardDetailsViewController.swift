@@ -6,10 +6,12 @@
 //
 
 import UIKit
+import SimpleNetworkCall
 
 class CardDetailsViewController: UIViewController {
     
     var card : Card?
+    var projectId : String?
     
     var titleTextField: UITextField = {
        var textField = UITextField()
@@ -45,6 +47,8 @@ class CardDetailsViewController: UIViewController {
         self.view.backgroundColor = .white
         colorButton.addTarget(self, action: #selector(changeColorAction), for: .touchUpInside)
         setupView()
+        
+        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(updateCard))
     }
     
     //MARK: Action
@@ -58,9 +62,25 @@ class CardDetailsViewController: UIViewController {
         self.present(picker, animated: true, completion: nil)
     }
     
-    
+    @objc
     func updateCard(){
         
+        guard let card = card , let projectId = projectId else {
+            return
+        }
+        
+        card.title = titleTextField.text!
+        card.cardDescription = descriptionTextField.text!
+        
+        Network.shared.post(body: card, urlString: "".updateCardsURL(projectId: projectId, categoryId: card.categoryId), headerParameters:  ["Authorization": UserDefaultsData.token]) { (results: Result<ReturnObject<Card>, Error>) in
+            switch(results){
+            case .success(let data):
+                self.dismiss(animated: true, completion: nil)
+            
+            case .failure(let err):
+                print(err)
+            }
+        }
     }
 }
 

@@ -29,7 +29,11 @@ extension String{
         getBaseServerURL() + "/project/\(projectId)/category/\(categoryId)/card/add"
     }
     
-    func updateCardURL(projectId : String,categoryId:String,newCategoryId: String) -> String{
+    func updateCardsURL(projectId : String,categoryId:String) -> String{
+        getBaseServerURL() + "/project/\(projectId)/category/\(categoryId)/card/update"
+    }
+    
+    func moveCardURL(projectId : String,categoryId:String,newCategoryId: String) -> String{
         getBaseServerURL() + "/project/\(projectId)/category/\(categoryId)/card/move/\(newCategoryId)"
     }
     

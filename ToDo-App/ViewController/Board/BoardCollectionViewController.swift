@@ -49,7 +49,7 @@ class BoardCollectionViewController: UICollectionViewController, UICollectionVie
     
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
-        socket.stop()
+
     }
     override func viewWillAppear(_ animated: Bool) {
         setupDelegates()
@@ -67,6 +67,11 @@ class BoardCollectionViewController: UICollectionViewController, UICollectionVie
         
         socket.delegate = self
         socket.projectId = project?.id
+    }
+    
+    deinit {
+        print("Deinit")
+        socket.stop()
     }
     
     
@@ -240,8 +245,6 @@ extension BoardCollectionViewController: UIDropInteractionDelegate {
 //MARK: Socket
 extension BoardCollectionViewController : SocketCardManagerDelegate {
     
-    
-    
     func didConnect() {
         print("Connect To Room")
     }
@@ -253,6 +256,13 @@ extension BoardCollectionViewController : SocketCardManagerDelegate {
     
     func didReceive(newCard: Card) {
         self.categories.first(where: {$0.id == newCard.categoryId})?.cards.append(newCard)
+        self.collectionView.reloadData()
+    }
+    
+    func didReceive(updateCard: Card) {
+        let card = self.categories.first(where: {$0.id == updateCard.categoryId})?.cards.first(where: {$0.id == updateCard.id})
+        card?.cardDescription = updateCard.cardDescription
+        card?.title = updateCard.title
         self.collectionView.reloadData()
     }
     
@@ -343,7 +353,7 @@ extension BoardCollectionViewController {
     
     func postNetworkMoveCard(projectId: String, oldCard: Card, newCategoryId: String){
         
-        Network.shared.post(body: oldCard, urlString: "".updateCardURL(projectId: projectId, categoryId: newCategoryId, newCategoryId: newCategoryId),headerParameters: ["Authorization": UserDefaultsData.token]) {  (results: Result<ReturnObject<Category>, Error>) in
+        Network.shared.post(body: oldCard, urlString: "".moveCardURL(projectId: projectId, categoryId: newCategoryId, newCategoryId: newCategoryId),headerParameters: ["Authorization": UserDefaultsData.token]) {  (results: Result<ReturnObject<Category>, Error>) in
             switch(results){
             case .success(let data):
                 if data.success {

@@ -191,7 +191,10 @@ extension BoardCollectionViewCell: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let boardVC = CardDetailsViewController()
         boardVC.card = category?.cards[indexPath.row]
-        self.parentVC?.navigationController?.present(boardVC, animated: true)
+        boardVC.projectId = projectId
+        let navController = UINavigationController(rootViewController: boardVC) // Creating a navigation controller with VC1 at the root of the navigation stack.
+
+        self.parentVC?.present(navController, animated: true)
         tableView.deselectRow(at: indexPath, animated: true)
     }
     

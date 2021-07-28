@@ -78,6 +78,14 @@ class SocketTodoManager {
                 self.delegate?.didReceive(moveCard: response)
             }
         }
+        
+        socket?.on("update card") { (data, ack) in
+            guard let dataInfo = data.first else { return }
+            if let response: Card = try? SocketParser.convert(data: dataInfo) {
+                
+                self.delegate?.didReceive(updateCard: response)
+            }
+        }
     }
 }
 
@@ -89,6 +97,7 @@ struct SocketPosition: Codable {
 protocol SocketCardManagerDelegate: AnyObject {
     func didConnect()
     func didReceive(newCard: Card)
+    func didReceive(updateCard: Card)
     func didReceive(newCategory: Category)
     func didReceive(moveCard: ResponseMoveCard)
     func didReceiveRemove(removeCard: Card)
