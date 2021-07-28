@@ -47,35 +47,6 @@ class CardDetailsViewController: UIViewController {
         setupView()
     }
     
-    func setupView(){
-        view.addSubview(titleTextField)
-        view.addSubview(descriptionTextField)
-        view.addSubview(colorButton)
-        view.addSubview(dataPicket)
-        NSLayoutConstraint.activate([
-            titleTextField.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor,constant: 20),
-            titleTextField.leadingAnchor.constraint(equalTo: self.view.leadingAnchor,constant: 20),
-            titleTextField.trailingAnchor.constraint(equalTo: self.view.trailingAnchor,constant: -20),
-            
-            descriptionTextField.topAnchor.constraint(equalTo: self.titleTextField.bottomAnchor,constant: 20),
-            descriptionTextField.leadingAnchor.constraint(equalTo: self.view.leadingAnchor,constant: 20),
-            descriptionTextField.trailingAnchor.constraint(equalTo: self.view.trailingAnchor,constant: -20),
-            
-            colorButton.topAnchor.constraint(equalTo: self.descriptionTextField.bottomAnchor,constant: 20),
-            colorButton.leadingAnchor.constraint(equalTo: self.view.leadingAnchor,constant: 20),
-            colorButton.trailingAnchor.constraint(equalTo: self.view.trailingAnchor,constant: -20),
-            
-            dataPicket.topAnchor.constraint(equalTo: self.colorButton.bottomAnchor,constant: 20),
-            dataPicket.leadingAnchor.constraint(equalTo: self.view.leadingAnchor,constant: 20),
-            dataPicket.trailingAnchor.constraint(equalTo: self.view.trailingAnchor,constant: -20),
-        ])
-        
-        titleTextField.text = card?.title
-        descriptionTextField.text = card?.cardDescription
-        
-    }
-    
-    
     //MARK: Action
     @objc
     func changeColorAction(){
@@ -93,15 +64,48 @@ class CardDetailsViewController: UIViewController {
     }
 }
 
-
-extension CardDetailsViewController: UIColorPickerViewControllerDelegate {
-    
-    
-    func colorPickerViewControllerDidFinish(_ viewController: UIColorPickerViewController) {
-        self.colorButton.backgroundColor = viewController.selectedColor
-        
+//MARK: SetupView
+extension CardDetailsViewController : ViewCode {
+    func buildViewHierarchy() {
+        view.addSubview(titleTextField)
+        view.addSubview(descriptionTextField)
+        view.addSubview(colorButton)
+        view.addSubview(dataPicket)
     }
     
+    func setupConstraints() {
+        NSLayoutConstraint.activate([
+            titleTextField.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor,constant: 20),
+            titleTextField.leadingAnchor.constraint(equalTo: self.view.leadingAnchor,constant: 20),
+            titleTextField.trailingAnchor.constraint(equalTo: self.view.trailingAnchor,constant: -20),
+            
+            descriptionTextField.topAnchor.constraint(equalTo: self.titleTextField.bottomAnchor,constant: 20),
+            descriptionTextField.leadingAnchor.constraint(equalTo: self.view.leadingAnchor,constant: 20),
+            descriptionTextField.trailingAnchor.constraint(equalTo: self.view.trailingAnchor,constant: -20),
+            
+            colorButton.topAnchor.constraint(equalTo: self.descriptionTextField.bottomAnchor,constant: 20),
+            colorButton.leadingAnchor.constraint(equalTo: self.view.leadingAnchor,constant: 20),
+            colorButton.trailingAnchor.constraint(equalTo: self.view.trailingAnchor,constant: -20),
+            
+            dataPicket.topAnchor.constraint(equalTo: self.colorButton.bottomAnchor,constant: 20),
+            dataPicket.leadingAnchor.constraint(equalTo: self.view.leadingAnchor,constant: 20),
+            dataPicket.trailingAnchor.constraint(equalTo: self.view.trailingAnchor,constant: -20),
+        ])
+    }
+    
+    func setupAdditionalConfiguration() {
+        titleTextField.text = card?.title
+        descriptionTextField.text = card?.cardDescription
+    }
+    
+    
+}
+
+
+extension CardDetailsViewController: UIColorPickerViewControllerDelegate {
+    func colorPickerViewControllerDidFinish(_ viewController: UIColorPickerViewController) {
+        self.colorButton.backgroundColor = viewController.selectedColor
+    }
     
     func colorPickerViewControllerDidSelectColor(_ viewController: UIColorPickerViewController) {
         self.colorButton.backgroundColor = viewController.selectedColor
