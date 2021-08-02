@@ -52,7 +52,7 @@ class CardTableViewFooterCell: UITableViewHeaderFooterView {
     
     @objc
     func addBoardAction(){
-        print("Section \(String(describing: section))")
+//        print("Section \(String(describing: section))")
         tableView?.addAction()
 //        tableView?.parentVC?.setupAddBarButtonItem(addingType: .Card)
     }

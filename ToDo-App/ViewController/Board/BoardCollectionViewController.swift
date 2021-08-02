@@ -80,7 +80,7 @@ class BoardCollectionViewController: UICollectionViewController, UICollectionVie
     }
     
     func setupAddButtonItem() {
-        let addButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: nil)
+        let addButtonItem = UIBarButtonItem(image: UIImage(systemName: "gearshape"), style: .plain, target: self, action: #selector(boardSettings))
         navigationItem.rightBarButtonItem = addButtonItem
     }
     
@@ -130,6 +130,11 @@ class BoardCollectionViewController: UICollectionViewController, UICollectionVie
     
     
     //MARK: Action
+    @objc
+    func boardSettings(){
+        self.navigationController?.pushViewController(BoardSettingsViewController(), animated: true)
+    }
+    
     @objc
     func addCategoryAction(){
         let cell = collectionView.cellForItem(at: IndexPath(row: 0, section: 1)) as! BoardAddCollectionViewCell

@@ -52,6 +52,7 @@
 		6648F246261FA23A0085E497 /* NotificationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6648F245261FA23A0085E497 /* NotificationController.swift */; };
 		6648F24B261FA2E50085E497 /* SettingController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6648F24A261FA2E50085E497 /* SettingController.swift */; };
 		6648F251261FA3CF0085E497 /* MenuBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6648F250261FA3CF0085E497 /* MenuBarViewController.swift */; };
+		6659E90A26B7EE4200826CF5 /* BoardSettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6659E90926B7EE4200826CF5 /* BoardSettingsViewController.swift */; };
 		66A38B5326AC9D560088DEC0 /* SimpleNetworkCall in Frameworks */ = {isa = PBXBuildFile; productRef = 66A38B5226AC9D560088DEC0 /* SimpleNetworkCall */; };
 /* End PBXBuildFile section */
 
@@ -102,6 +103,7 @@
 		6648F245261FA23A0085E497 /* NotificationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationController.swift; sourceTree = "<group>"; };
 		6648F24A261FA2E50085E497 /* SettingController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingController.swift; sourceTree = "<group>"; };
 		6648F250261FA3CF0085E497 /* MenuBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuBarViewController.swift; sourceTree = "<group>"; };
+		6659E90926B7EE4200826CF5 /* BoardSettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardSettingsViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -175,6 +177,7 @@
 				66442D462627806E0094D253 /* BoardCollectionViewController.swift */,
 				66442D452627806E0094D253 /* BoardCollectionViewCell.swift */,
 				66442D5E2628FA6A0094D253 /* BoardAddCollectionViewCell.swift */,
+				6659E90926B7EE4200826CF5 /* BoardSettingsViewController.swift */,
 			);
 			path = Board;
 			sourceTree = "<group>";
@@ -421,6 +424,7 @@
 				66442DB32634E36A0094D253 /* Notification.Name+Extension.swift in Sources */,
 				66442D8D262B88D30094D253 /* SocketParser.swift in Sources */,
 				66442D4D2627966A0094D253 /* CardTableViewHeaderCell.swift in Sources */,
+				6659E90A26B7EE4200826CF5 /* BoardSettingsViewController.swift in Sources */,
 				66442D9D2631A80E0094D253 /* SocketNotificationManager.swift in Sources */,
 				66442D3626265AFD0094D253 /* Project.swift in Sources */,
 				66442D51262799410094D253 /* CardTableViewCell.swift in Sources */,
