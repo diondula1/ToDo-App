@@ -27,8 +27,6 @@ class SettingController: UIViewController {
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Log Out", style: .plain, target: self, action: #selector(logoutTapped))
         
         setupView()
-        
-        
     }
     
     @objc
