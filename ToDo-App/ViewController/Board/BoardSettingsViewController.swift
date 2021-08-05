@@ -8,22 +8,79 @@
 import UIKit
 
 class BoardSettingsViewController: UIViewController {
+    
+    var itemArray =
+        [
+            SettingItem(name: "About this board", image: UIImage(systemName: "info.circle")!),
+            SettingItem(name: "Members", image: UIImage(systemName: "person.fill")!),
+            SettingItem(name: "Activity", image: UIImage(systemName: "list.bullet")!),
+        ]
 
+    
+    var tableView : UITableView = {
+        var tableView = UITableView()
+        tableView.translatesAutoresizingMaskIntoConstraints = false
+        return tableView
+    }()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .white
-        // Do any additional setup after loading the view.
+        setupView()
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    //MARK: Action
+    @objc
+    func dismissAction(){
+        dismiss(animated: true, completion: nil)
     }
-    */
+}
 
+//MARK: SetupView
+extension BoardSettingsViewController : ViewCode {
+    func buildViewHierarchy() {
+        view.addSubview(tableView)
+    }
+    
+    func setupConstraints() {
+        NSLayoutConstraint.activate([
+            tableView.topAnchor.constraint(equalTo: view.topAnchor),
+            tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+            tableView.leftAnchor.constraint(equalTo: view.leftAnchor),
+            tableView.rightAnchor.constraint(equalTo: view.rightAnchor),
+        ])
+    }
+    
+    func setupAdditionalConfiguration() {
+        view.backgroundColor = .white
+        tableView.dataSource = self
+        tableView.delegate = self
+        
+        navigationItem.leftBarButtonItem = UIBarButtonItem.init(barButtonSystemItem: .close, target: self, action: #selector(dismissAction))
+    }
+}
+
+
+//MARK: TableView
+extension BoardSettingsViewController : UITableViewDelegate, UITableViewDataSource {
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return itemArray.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = UITableViewCell.init(style: .value1, reuseIdentifier: "asd")
+        cell.textLabel?.text = itemArray[indexPath.row].name
+        cell.accessoryView = UIImageView(image: itemArray[indexPath.row].image)
+        return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+    }
+}
+
+
+struct SettingItem {
+    var name : String
+    var image : UIImage
 }

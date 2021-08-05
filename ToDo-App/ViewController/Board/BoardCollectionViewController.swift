@@ -132,7 +132,10 @@ class BoardCollectionViewController: UICollectionViewController, UICollectionVie
     //MARK: Action
     @objc
     func boardSettings(){
-        self.navigationController?.pushViewController(BoardSettingsViewController(), animated: true)
+        let vc = BoardSettingsViewController()
+        let navVC = UINavigationController(rootViewController: vc)
+        navVC.modalPresentationStyle = .fullScreen //or .overFullScreen for transparency
+        self.present(navVC, animated: true, completion: nil)
     }
     
     @objc
