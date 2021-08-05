@@ -16,8 +16,23 @@ class SettingController: UIViewController {
         
         return tableView
     }()
+    
     var sections = ["Common", "Account", "About"]
-    var data  = [[ "Language" , "Dark / Light" ], [ "Profile" , "Sign Out" ], [ "Read Me" , "Github" ]]
+    var data  =
+        [
+            [
+                SettingItem(name: "Language", image: UIImage(systemName: "list.dash")!, settingType: .none),
+                SettingItem(name: "Dark / Light", image: UIImage(systemName: "list.dash")!, settingType: .switch_),
+            ],
+            [
+                SettingItem(name: "Profile", image: UIImage(systemName: "list.dash")!, settingType: .none),
+                SettingItem(name: "Sign Out", image: UIImage(systemName: "list.dash")!, settingType: .none),
+            ],
+            [
+                SettingItem(name: "Read Me", image: UIImage(systemName: "list.dash")!, settingType: .none),
+                SettingItem(name: "Github", image: UIImage(systemName: "list.dash")!, settingType: .none),
+            ]
+        ]
     
     let cellid = "cellid"
     
@@ -46,17 +61,30 @@ extension SettingController : UITableViewDataSource , UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = UITableViewCell(style: .default, reuseIdentifier: cellid)
-        cell.textLabel?.text = data[indexPath.section][indexPath.row]
-        cell.imageView?.image = UIImage(systemName: "list.dash")
-        cell.accessoryType = UITableViewCell.AccessoryType.disclosureIndicator
-//        var sw = UISwitch()
-//        sw.action
-        cell.accessoryView = UISwitch()
+        let settingItem = data[indexPath.section][indexPath.row]
+        
+        cell.textLabel?.text = settingItem.name
+        cell.imageView?.image = settingItem.image
+        
+        if settingItem.settingType == .switch_ {
+            cell.accessoryType = UITableViewCell.AccessoryType.disclosureIndicator
+            cell.accessoryView = UISwitch()
+        }
+    
         return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-//        print("SDasD")
+        let settingItem = data[indexPath.section][indexPath.row]
+        
+        switch settingItem.name {
+        case "Language":
+            print("Language")
+        case "Profile":
+            navigationController?.pushViewController(ProfileViewController(), animated: true)
+        default:
+            print("ADS")
+        }
     }
     
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
@@ -71,9 +99,6 @@ extension SettingController : UITableViewDataSource , UITableViewDelegate {
 
 //MARK: SetupView
 extension SettingController : ViewCode {
-    func setupView() {
-        
-    }
     
     func buildViewHierarchy() {
         view.addSubview(tableView)

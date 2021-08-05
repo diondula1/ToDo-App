@@ -54,6 +54,7 @@
 		6648F251261FA3CF0085E497 /* MenuBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6648F250261FA3CF0085E497 /* MenuBarViewController.swift */; };
 		6659E90A26B7EE4200826CF5 /* BoardSettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6659E90926B7EE4200826CF5 /* BoardSettingsViewController.swift */; };
 		6659E90C26BC66DC00826CF5 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6659E90B26BC66DC00826CF5 /* ProfileViewController.swift */; };
+		6659E90E26BC816200826CF5 /* SettingItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6659E90D26BC816200826CF5 /* SettingItem.swift */; };
 		66A38B5326AC9D560088DEC0 /* SimpleNetworkCall in Frameworks */ = {isa = PBXBuildFile; productRef = 66A38B5226AC9D560088DEC0 /* SimpleNetworkCall */; };
 /* End PBXBuildFile section */
 
@@ -106,6 +107,7 @@
 		6648F250261FA3CF0085E497 /* MenuBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuBarViewController.swift; sourceTree = "<group>"; };
 		6659E90926B7EE4200826CF5 /* BoardSettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardSettingsViewController.swift; sourceTree = "<group>"; };
 		6659E90B26BC66DC00826CF5 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
+		6659E90D26BC816200826CF5 /* SettingItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingItem.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -141,6 +143,7 @@
 				66442D2726263E690094D253 /* User.swift */,
 				66442D3526265AFD0094D253 /* Project.swift */,
 				66442D5A2628BEBC0094D253 /* Notification.swift */,
+				6659E90D26BC816200826CF5 /* SettingItem.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -432,6 +435,7 @@
 				66442D9D2631A80E0094D253 /* SocketNotificationManager.swift in Sources */,
 				66442D3626265AFD0094D253 /* Project.swift in Sources */,
 				66442D51262799410094D253 /* CardTableViewCell.swift in Sources */,
+				6659E90E26BC816200826CF5 /* SettingItem.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

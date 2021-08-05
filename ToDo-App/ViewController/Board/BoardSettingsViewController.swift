@@ -79,8 +79,3 @@ extension BoardSettingsViewController : UITableViewDelegate, UITableViewDataSour
     }
 }
 
-
-struct SettingItem {
-    var name : String
-    var image : UIImage
-}
