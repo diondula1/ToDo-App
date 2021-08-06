@@ -21,25 +21,23 @@ class SettingController: UIViewController {
     var data  =
         [
             [
-                SettingItem(name: "Language", image: UIImage(systemName: "list.dash")!, settingType: .none),
+                SettingItem(name: "Language", image: UIImage(named: "language")!, settingType: .none),
                 SettingItem(name: "Dark / Light", image: UIImage(systemName: "list.dash")!, settingType: .switch_),
             ],
             [
-                SettingItem(name: "Profile", image: UIImage(systemName: "list.dash")!, settingType: .none),
+                SettingItem(name: "Profile", image: UIImage(systemName: "person.fill")!, settingType: .none),
                 SettingItem(name: "Sign Out", image: UIImage(systemName: "list.dash")!, settingType: .none),
             ],
             [
                 SettingItem(name: "Read Me", image: UIImage(systemName: "list.dash")!, settingType: .none),
-                SettingItem(name: "Github", image: UIImage(systemName: "list.dash")!, settingType: .none),
+                SettingItem(name: "Github", image: UIImage(named: "github")!, settingType: .none),
             ]
         ]
     
     let cellid = "cellid"
     
     override func viewDidLoad() {
-        
         self.view.backgroundColor = .white
-        self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Log Out", style: .plain, target: self, action: #selector(logoutTapped))
         
         setupView()
     }
@@ -65,7 +63,7 @@ extension SettingController : UITableViewDataSource , UITableViewDelegate {
         
         cell.textLabel?.text = settingItem.name
         cell.imageView?.image = settingItem.image
-        
+        cell.imageView?.image?.accessibilityFrame = CGRect(x: 0, y: 0, width: 20, height: 20)
         if settingItem.settingType == .switch_ {
             cell.accessoryType = UITableViewCell.AccessoryType.disclosureIndicator
             cell.accessoryView = UISwitch()
@@ -80,8 +78,13 @@ extension SettingController : UITableViewDataSource , UITableViewDelegate {
         switch settingItem.name {
         case "Language":
             print("Language")
+            
         case "Profile":
             navigationController?.pushViewController(ProfileViewController(), animated: true)
+            
+        case "Sign Out":
+            logoutTapped()
+            
         default:
             print("ADS")
         }
