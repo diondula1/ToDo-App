@@ -7,6 +7,7 @@ Open-Source, free, self-hosted version of Trello, built using Mongo, Express, Sw
 - [ ] Sharing project to other persons 
 - [x] Adding updating boards,cards
 - [x] Realtime inside project(SocketIO) to change,delete,insert cards
+- [x] Showing Logs when updating adding cards,boards
 - [ ] Change Card Color
 - [ ] Profile Updating
 - [ ] Firebase Notifications 
