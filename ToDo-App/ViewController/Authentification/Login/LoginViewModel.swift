@@ -12,6 +12,7 @@ enum State<T> {
     case loading
     case error(error: Error)
     case success(object: T)
+    case none
 }
 
 enum LoginError: Error {
@@ -26,7 +27,7 @@ class LoginViewModel {
     
     @Published var username: String = ""
     @Published var password: String = ""
-    @Published var state: State<User>?
+    @Published var state: State<User> = .none
     
     init(service: LoginService) {
         self.service = service
