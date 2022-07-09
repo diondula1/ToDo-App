@@ -61,6 +61,7 @@
 		66C98E0F287A289B00CD25E5 /* RootController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66C98E0E287A289B00CD25E5 /* RootController.swift */; };
 		66C98E11287A362000CD25E5 /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66C98E10287A362000CD25E5 /* RegisterViewController.swift */; };
 		66C98E15287A41C100CD25E5 /* RegisterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66C98E14287A41C100CD25E5 /* RegisterView.swift */; };
+		66C98E17287A496A00CD25E5 /* URLRequest+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66C98E16287A496A00CD25E5 /* URLRequest+Extension.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -118,6 +119,7 @@
 		66C98E0E287A289B00CD25E5 /* RootController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootController.swift; sourceTree = "<group>"; };
 		66C98E10287A362000CD25E5 /* RegisterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RegisterViewController.swift; path = "ToDo-App/ViewController/Authentification/RegisterViewController.swift"; sourceTree = SOURCE_ROOT; };
 		66C98E14287A41C100CD25E5 /* RegisterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterView.swift; sourceTree = "<group>"; };
+		66C98E16287A496A00CD25E5 /* URLRequest+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URLRequest+Extension.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -168,6 +170,7 @@
 				66442D66262A0B8A0094D253 /* UITextField+Extension.swift */,
 				66442DAF2634CBAA0094D253 /* TabBar+Extemsion.swift */,
 				66442DB52635B9C90094D253 /* Date+Extension.swift */,
+				66C98E16287A496A00CD25E5 /* URLRequest+Extension.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -445,6 +448,7 @@
 				6648F228261F8FED0085E497 /* LoginController.swift in Sources */,
 				66442D482627806E0094D253 /* BoardCollectionViewCell.swift in Sources */,
 				66442D2D26263F0D0094D253 /* StringUrl+Extension.swift in Sources */,
+				66C98E17287A496A00CD25E5 /* URLRequest+Extension.swift in Sources */,
 				66442D6A262A1E2F0094D253 /* RequestLogin.swift in Sources */,
 				66442D74262A228E0094D253 /* RequesCategory.swift in Sources */,
 				66442D70262A1F1B0094D253 /* RequestRegister.swift in Sources */,
