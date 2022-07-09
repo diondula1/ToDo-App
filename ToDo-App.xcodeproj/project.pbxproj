@@ -12,7 +12,6 @@
 		66442D2526263E360094D253 /* UIViewController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66442D2426263E360094D253 /* UIViewController+Extension.swift */; };
 		66442D2826263E690094D253 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66442D2726263E690094D253 /* User.swift */; };
 		66442D2D26263F0D0094D253 /* StringUrl+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66442D2C26263F0D0094D253 /* StringUrl+Extension.swift */; };
-		66442D3226264AE40094D253 /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66442D3126264AE40094D253 /* RegisterViewController.swift */; };
 		66442D3626265AFD0094D253 /* Project.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66442D3526265AFD0094D253 /* Project.swift */; };
 		66442D39262662410094D253 /* ProjectCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66442D38262662410094D253 /* ProjectCell.swift */; };
 		66442D3F262663E60094D253 /* UIColor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66442D3E262663E60094D253 /* UIColor+Extension.swift */; };
@@ -60,6 +59,7 @@
 		66C98E0A287A262700CD25E5 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66C98E09287A262700CD25E5 /* LoginViewModel.swift */; };
 		66C98E0C287A266000CD25E5 /* LoginService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66C98E0B287A266000CD25E5 /* LoginService.swift */; };
 		66C98E0F287A289B00CD25E5 /* RootController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66C98E0E287A289B00CD25E5 /* RootController.swift */; };
+		66C98E11287A362000CD25E5 /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66C98E10287A362000CD25E5 /* RegisterViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -68,7 +68,6 @@
 		66442D2426263E360094D253 /* UIViewController+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extension.swift"; sourceTree = "<group>"; };
 		66442D2726263E690094D253 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		66442D2C26263F0D0094D253 /* StringUrl+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "StringUrl+Extension.swift"; sourceTree = "<group>"; };
-		66442D3126264AE40094D253 /* RegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
 		66442D3526265AFD0094D253 /* Project.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Project.swift; sourceTree = "<group>"; };
 		66442D38262662410094D253 /* ProjectCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectCell.swift; sourceTree = "<group>"; };
 		66442D3E262663E60094D253 /* UIColor+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+Extension.swift"; sourceTree = "<group>"; };
@@ -116,6 +115,7 @@
 		66C98E09287A262700CD25E5 /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
 		66C98E0B287A266000CD25E5 /* LoginService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginService.swift; sourceTree = "<group>"; };
 		66C98E0E287A289B00CD25E5 /* RootController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootController.swift; sourceTree = "<group>"; };
+		66C98E10287A362000CD25E5 /* RegisterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RegisterViewController.swift; path = "ToDo-App/ViewController/Authentification/RegisterViewController.swift"; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -335,7 +335,7 @@
 		66C98E062878D80800CD25E5 /* Register */ = {
 			isa = PBXGroup;
 			children = (
-				66442D3126264AE40094D253 /* RegisterViewController.swift */,
+				66C98E10287A362000CD25E5 /* RegisterViewController.swift */,
 			);
 			path = Register;
 			sourceTree = "<group>";
@@ -453,7 +453,6 @@
 				66442D19262638F50094D253 /* UserDefaultsData.swift in Sources */,
 				66442D93262E04880094D253 /* ResponseMoveCard.swift in Sources */,
 				66442D492627806E0094D253 /* BoardCollectionViewController.swift in Sources */,
-				66442D3226264AE40094D253 /* RegisterViewController.swift in Sources */,
 				6648F224261F8FED0085E497 /* AppDelegate.swift in Sources */,
 				66442D39262662410094D253 /* ProjectCell.swift in Sources */,
 				66C98E0A287A262700CD25E5 /* LoginViewModel.swift in Sources */,
@@ -468,6 +467,7 @@
 				6648F22E261F8FEE0085E497 /* ToDo_App.xcdatamodeld in Sources */,
 				6648F24B261FA2E50085E497 /* SettingController.swift in Sources */,
 				6648F251261FA3CF0085E497 /* MenuBarViewController.swift in Sources */,
+				66C98E11287A362000CD25E5 /* RegisterViewController.swift in Sources */,
 				66442DB32634E36A0094D253 /* Notification.Name+Extension.swift in Sources */,
 				66442D8D262B88D30094D253 /* SocketParser.swift in Sources */,
 				66442D4D2627966A0094D253 /* CardTableViewHeaderCell.swift in Sources */,

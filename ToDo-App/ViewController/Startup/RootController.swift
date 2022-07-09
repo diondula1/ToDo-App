@@ -10,6 +10,42 @@ import UIKit
 
 class RootController {
     var navigation: UINavigationController
+    var user: User
+    
+    internal init(navigation: UINavigationController, user: User) {
+        self.navigation = navigation
+        self.user = user
+    }
+    
+    func start() {
+        user.token.isEmpty ? callAuthentication() : moveToMainViewController()
+    }
+    
+    func callAuthentication() {
+        let authentication = AuthenticationRouter(navigation: navigation)
+        authentication.start()
+        authentication.loginCompleted = {
+            self.moveToMainViewController()
+        }
+    }
+    
+    func moveToMainViewController() {
+        let viewController = MenuBarViewController()
+        viewController.modalPresentationStyle = .fullScreen
+        viewController.modalTransitionStyle = .crossDissolve
+        navigation.present(viewController, animated: true)
+    }
+    
+    func moveToRegistrationPage() {
+        let newViewController = RegisterViewController()
+        newViewController.modalPresentationStyle = .fullScreen
+        navigation.pushViewController(newViewController, animated: true)
+    }
+}
+
+class AuthenticationRouter {
+    var navigation: UINavigationController
+    var loginCompleted: (() -> ())?
     
     internal init(navigation: UINavigationController) {
         self.navigation = navigation
@@ -24,19 +60,12 @@ class RootController {
         viewController.loginCompleted = { user in
             UserDefaultsData.token = user.token
             UserDefaultsData.id = user.id
-            self.moveToMainViewController()
+            self.loginCompleted?()
         }
         
         viewController.registerClicked = {
             self.moveToRegistrationPage()
         }
-    }
-    
-    func moveToMainViewController() {
-        let viewController = MenuBarViewController()
-        viewController.modalPresentationStyle = .fullScreen
-        viewController.modalTransitionStyle = .crossDissolve
-        navigation.present(viewController, animated: true, completion: nil)
     }
     
     func moveToRegistrationPage() {

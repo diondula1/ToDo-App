@@ -18,7 +18,9 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
   
         self.window = window
         let navConroller = UINavigationController()
-        let vc = RootController(navigation: navConroller)
+        
+        //TODO: Refactor this part ... it should not be this way to get data from userDefaults here :)
+        let vc = RootController(navigation: navConroller,user: User(id: UserDefaultsData.id, username: UserDefaultsData.username, token: UserDefaultsData.token))
         window.rootViewController = navConroller
         window.makeKeyAndVisible()
         vc.start()

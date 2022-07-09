@@ -11,7 +11,6 @@ class MenuBarViewController: UITabBarController {
     
     let socket = SocketNotificationManager()
     
-    
     override func viewDidLoad() {
         
         self.tabBar.barTintColor = UIColor.FlatColor.Blue.BlueWhale
