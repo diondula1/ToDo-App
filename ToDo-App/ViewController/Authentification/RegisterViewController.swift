@@ -13,6 +13,10 @@ class RegisterViewController: UIViewController {
     
     override func viewDidLoad() {
         setView()
+        
+        registerView.registerClicked = {
+            self.registerAction()
+        }
     }
     
     func setView() {
@@ -21,7 +25,7 @@ class RegisterViewController: UIViewController {
         registerView.frame = view.bounds
     }
     
-    @objc func registerAction(){
+    func registerAction() {
         if let name = registerView.nameTextField.text,
            let surname = registerView.surnameTextField.text,
            let username = registerView.usernameTextField.text,

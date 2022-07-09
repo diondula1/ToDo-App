@@ -8,6 +8,7 @@
 import UIKit
 
 class RegisterView: UIView {
+    //MARK: UI
     var nameTextField : UITextField = {
         var textField = UITextField()
         textField.translatesAutoresizingMaskIntoConstraints = false
@@ -48,6 +49,8 @@ class RegisterView: UIView {
         button.backgroundColor = .systemBlue
         return button
     }()
+    //MARK: Var
+    var registerClicked: (() -> ())?
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -67,7 +70,7 @@ class RegisterView: UIView {
     }
     
     @objc func registerAction(){
-        
+        registerClicked?()
     }
 }
 
