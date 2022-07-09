@@ -56,6 +56,10 @@
 		6659E90C26BC66DC00826CF5 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6659E90B26BC66DC00826CF5 /* ProfileViewController.swift */; };
 		6659E90E26BC816200826CF5 /* SettingItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6659E90D26BC816200826CF5 /* SettingItem.swift */; };
 		66A38B5326AC9D560088DEC0 /* SimpleNetworkCall in Frameworks */ = {isa = PBXBuildFile; productRef = 66A38B5226AC9D560088DEC0 /* SimpleNetworkCall */; };
+		66C98E08287A260B00CD25E5 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66C98E07287A260B00CD25E5 /* LoginView.swift */; };
+		66C98E0A287A262700CD25E5 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66C98E09287A262700CD25E5 /* LoginViewModel.swift */; };
+		66C98E0C287A266000CD25E5 /* LoginService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66C98E0B287A266000CD25E5 /* LoginService.swift */; };
+		66C98E0F287A289B00CD25E5 /* RootController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66C98E0E287A289B00CD25E5 /* RootController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -108,6 +112,10 @@
 		6659E90926B7EE4200826CF5 /* BoardSettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardSettingsViewController.swift; sourceTree = "<group>"; };
 		6659E90B26BC66DC00826CF5 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		6659E90D26BC816200826CF5 /* SettingItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingItem.swift; sourceTree = "<group>"; };
+		66C98E07287A260B00CD25E5 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
+		66C98E09287A262700CD25E5 /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
+		66C98E0B287A266000CD25E5 /* LoginService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginService.swift; sourceTree = "<group>"; };
+		66C98E0E287A289B00CD25E5 /* RootController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -165,6 +173,7 @@
 		66442D2A26263EC30094D253 /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
+				66C98E0D287A287B00CD25E5 /* Startup */,
 				66442D76262A425C0094D253 /* Card */,
 				66442D44262780620094D253 /* Board */,
 				6648F23C261F904D0085E497 /* Authentification */,
@@ -259,8 +268,6 @@
 				66442D2326263E230094D253 /* Extension */,
 				66442D1E262639360094D253 /* Model */,
 				66442D17262638E60094D253 /* Service */,
-				6648F223261F8FED0085E497 /* AppDelegate.swift */,
-				6648F225261F8FED0085E497 /* SceneDelegate.swift */,
 				6648F22F261F8FEF0085E497 /* Assets.xcassets */,
 				6648F231261F8FEF0085E497 /* LaunchScreen.storyboard */,
 				6648F234261F8FEF0085E497 /* Info.plist */,
@@ -272,8 +279,8 @@
 		6648F23C261F904D0085E497 /* Authentification */ = {
 			isa = PBXGroup;
 			children = (
-				6648F227261F8FED0085E497 /* LoginController.swift */,
-				66442D3126264AE40094D253 /* RegisterViewController.swift */,
+				66C98E062878D80800CD25E5 /* Register */,
+				66C98E052878D7FF00CD25E5 /* Login */,
 			);
 			path = Authentification;
 			sourceTree = "<group>";
@@ -312,6 +319,35 @@
 				6648F250261FA3CF0085E497 /* MenuBarViewController.swift */,
 			);
 			path = TabBar;
+			sourceTree = "<group>";
+		};
+		66C98E052878D7FF00CD25E5 /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				6648F227261F8FED0085E497 /* LoginController.swift */,
+				66C98E07287A260B00CD25E5 /* LoginView.swift */,
+				66C98E09287A262700CD25E5 /* LoginViewModel.swift */,
+				66C98E0B287A266000CD25E5 /* LoginService.swift */,
+			);
+			path = Login;
+			sourceTree = "<group>";
+		};
+		66C98E062878D80800CD25E5 /* Register */ = {
+			isa = PBXGroup;
+			children = (
+				66442D3126264AE40094D253 /* RegisterViewController.swift */,
+			);
+			path = Register;
+			sourceTree = "<group>";
+		};
+		66C98E0D287A287B00CD25E5 /* Startup */ = {
+			isa = PBXGroup;
+			children = (
+				6648F223261F8FED0085E497 /* AppDelegate.swift */,
+				6648F225261F8FED0085E497 /* SceneDelegate.swift */,
+				66C98E0E287A289B00CD25E5 /* RootController.swift */,
+			);
+			path = Startup;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -395,8 +431,10 @@
 				66442D2826263E690094D253 /* User.swift in Sources */,
 				66442D2526263E360094D253 /* UIViewController+Extension.swift in Sources */,
 				66442D8A262B88460094D253 /* SocketTodoManager.swift in Sources */,
+				66C98E08287A260B00CD25E5 /* LoginView.swift in Sources */,
 				66442D5B2628BEBC0094D253 /* Notification.swift in Sources */,
 				66442D3F262663E60094D253 /* UIColor+Extension.swift in Sources */,
+				66C98E0C287A266000CD25E5 /* LoginService.swift in Sources */,
 				6659E90C26BC66DC00826CF5 /* ProfileViewController.swift in Sources */,
 				6648F241261F9EC90085E497 /* ProjectController.swift in Sources */,
 				66442D202626397C0094D253 /* ReturnObject.swift in Sources */,
@@ -408,6 +446,7 @@
 				66442D70262A1F1B0094D253 /* RequestRegister.swift in Sources */,
 				66442DB02634CBAA0094D253 /* TabBar+Extemsion.swift in Sources */,
 				66442DA72632208D0094D253 /* NotificationTableViewCell.swift in Sources */,
+				66C98E0F287A289B00CD25E5 /* RootController.swift in Sources */,
 				66442D42262664AD0094D253 /* UIColor.swift in Sources */,
 				66442DAB263222F70094D253 /* ViewCodeProtocol.swift in Sources */,
 				6648F246261FA23A0085E497 /* NotificationController.swift in Sources */,
@@ -417,6 +456,7 @@
 				66442D3226264AE40094D253 /* RegisterViewController.swift in Sources */,
 				6648F224261F8FED0085E497 /* AppDelegate.swift in Sources */,
 				66442D39262662410094D253 /* ProjectCell.swift in Sources */,
+				66C98E0A287A262700CD25E5 /* LoginViewModel.swift in Sources */,
 				66442D7B262A430E0094D253 /* RequestCard.swift in Sources */,
 				66442DB62635B9C90094D253 /* Date+Extension.swift in Sources */,
 				66442D85262B2F640094D253 /* RequestProject.swift in Sources */,
@@ -577,6 +617,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = PNAXY7BQC9;
 				INFOPLIST_FILE = "ToDo-App/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -596,6 +637,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = PNAXY7BQC9;
 				INFOPLIST_FILE = "ToDo-App/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

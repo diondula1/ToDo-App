@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct User : Decodable{
+struct User: Codable{
     var id : String
     var username : String
     var token : String
