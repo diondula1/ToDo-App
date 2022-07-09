@@ -8,24 +8,25 @@
 import UIKit
 import Combine
 
+enum State<T> {
+    case loading
+    case error(error: Error)
+    case success(object: T)
+}
+
 enum LoginError: Error {
     case notAuthorized
 }
 
 class LoginViewModel {
     
-    enum State {
-        case loading
-        case error(error: Error)
-        case success(object: User)
-    }
     
     let service: LoginService
     var cancellables = Set<AnyCancellable>()
     
     @Published var username: String = ""
     @Published var password: String = ""
-    @Published var state: State?
+    @Published var state: State<User>?
     
     init(service: LoginService) {
         self.service = service
