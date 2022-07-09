@@ -35,12 +35,6 @@ class RootController {
         viewController.modalTransitionStyle = .crossDissolve
         navigation.present(viewController, animated: true)
     }
-    
-    func moveToRegistrationPage() {
-        let newViewController = RegisterViewController()
-        newViewController.modalPresentationStyle = .fullScreen
-        navigation.pushViewController(newViewController, animated: true)
-    }
 }
 
 class AuthenticationRouter {
@@ -69,7 +63,9 @@ class AuthenticationRouter {
     }
     
     func moveToRegistrationPage() {
-        let newViewController = RegisterViewController()
+        let service = RegisterService()
+        let viewModel = RegisterViewModel(service: service)
+        let newViewController = RegisterViewController(registerViewModel: viewModel)
         newViewController.modalPresentationStyle = .fullScreen
         navigation.pushViewController(newViewController, animated: true)
     }
