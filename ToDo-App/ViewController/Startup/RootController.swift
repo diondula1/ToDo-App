@@ -24,7 +24,10 @@ class RootController {
     func callAuthentication() {
         let authentication = AuthenticationRouter(navigation: navigation)
         authentication.start()
-        authentication.loginCompleted = {
+        
+        authentication.loginCompleted = { user in
+            UserDefaultsData.token = user.token
+            UserDefaultsData.id = user.id
             self.moveToMainViewController()
         }
     }
@@ -39,7 +42,7 @@ class RootController {
 
 class AuthenticationRouter {
     var navigation: UINavigationController
-    var loginCompleted: (() -> ())?
+    var loginCompleted: ((User) -> ())?
     
     internal init(navigation: UINavigationController) {
         self.navigation = navigation
@@ -52,9 +55,7 @@ class AuthenticationRouter {
         navigation.pushViewController(viewController, animated: true)
         
         viewController.loginCompleted = { user in
-            UserDefaultsData.token = user.token
-            UserDefaultsData.id = user.id
-            self.loginCompleted?()
+            self.loginCompleted?(user)
         }
         
         viewController.registerClicked = {
@@ -65,7 +66,12 @@ class AuthenticationRouter {
     func moveToRegistrationPage() {
         let service = RegisterService()
         let viewModel = RegisterViewModel(service: service)
-        let newViewController = RegisterViewController(registerViewModel: viewModel)
+        let newViewController = RegisterViewController(viewModel: viewModel)
+         
+        newViewController.registerCompleted = { user in
+            self.loginCompleted?(user)
+        }
+        
         newViewController.modalPresentationStyle = .fullScreen
         navigation.pushViewController(newViewController, animated: true)
     }

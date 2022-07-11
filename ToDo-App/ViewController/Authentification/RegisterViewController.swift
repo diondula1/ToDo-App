@@ -6,45 +6,48 @@
 //
 
 import UIKit
-import SimpleNetworkCall
-
-class RegisterService {
-    func register(with requestRegister: RequestRegister) async throws -> ReturnObject<User> {
-        let url = URL(string: "http://127.0.0.1:3000/api/auth/register")!
-        var request = URLRequest(url: url)
-        request.getRequest(body: requestRegister, httpMethod: "POST")
-        
-        let (data, _) = try await URLSession.shared.data(for: request)
-        let user = try JSONDecoder().decode(ReturnObject<User>.self, from: data)
-        
-        return user
-    }
-}
-
-class RegisterViewModel {
-    let service: RegisterService
-    
-    internal init(service: RegisterService) {
-        self.service = service
-    }
-}
+import Combine
 
 class RegisterViewController: UIViewController {
-
-    
+    var anyCancellable = Set<AnyCancellable>()
     var registerView = RegisterView()
-    let registerViewModel: RegisterViewModel
+    let viewModel: RegisterViewModel
     
-    internal init(registerViewModel: RegisterViewModel) {
-        self.registerViewModel = registerViewModel
+    var registerCompleted: ((User) -> ())?
+    
+    internal init(viewModel: RegisterViewModel) {
+        self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
     }
-  
+    
     override func viewDidLoad() {
+        setBinders()
         setView()
+    }
+    
+    func setBinders() {
+        viewModel.bind(registerView.nameTextField, to: \.name)
+        viewModel.bind(registerView.surnameTextField, to: \.surname)
+        viewModel.bind(registerView.usernameTextField, to: \.username)
+        viewModel.bind(registerView.passwordTextField, to: \.password)
+        
+        viewModel
+            .$state
+            .receive(on: RunLoop.main)
+            .sink { [weak self] result in
+                switch result {
+                case .loading:
+                    print("Loading")
+                case .error(error: let error):
+                    self?.showAlert(alertText: "Incorrect!", alertMessage: error.localizedDescription)
+                case .success(object: let user):
+                    self?.registerCompleted?(user)
+                case .none: break
+                }
+            }.store(in: &anyCancellable)
         
         registerView.registerClicked = {
-            self.registerAction()
+            self.viewModel.registerAction()
         }
     }
     
@@ -53,34 +56,7 @@ class RegisterViewController: UIViewController {
         view.addSubview(registerView)
         registerView.frame = view.bounds
     }
-    
-    func registerAction() {
-        if let name = registerView.nameTextField.text,
-           let surname = registerView.surnameTextField.text,
-           let username = registerView.usernameTextField.text,
-           let password = registerView.passwordTextField.text{
-            if name.isEmpty || surname.isEmpty || username.isEmpty || password.isEmpty {
-                self.showAlert(alertText: "Emty TextField", alertMessage: "Please Fill TextField!!")
-                return
-            }
-            let requestRegister =  RequestRegister(Name: name, Surname: surname, Username: username, Password: password)
-            Network.shared.post(body: requestRegister, urlString: "".getRegisterServerURL()) { (results: Result<ReturnObject<User>,Error>) in
-                switch(results){
-                case .failure(let err):
-                    print(err)
-                    
-                case .success(let data):
-                    if let data = data.data{
-                        UserDefaultsData.token = data.token
-                        self.moveToMainView()
-                    }else{
-                        self.showAlert(alertText: "Incorrect!", alertMessage: data.message)
-                    }
-                }
-            }
-        }
-    }
-    
+  
     func moveToMainView() {
         let navigationController = MenuBarViewController()
         navigationController.modalPresentationStyle = .fullScreen
