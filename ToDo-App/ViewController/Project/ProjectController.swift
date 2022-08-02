@@ -8,27 +8,21 @@
 import UIKit
 import SimpleNetworkCall
 
-class ProjectController: UIViewController {
-    
+class ProjectController: UITableViewController {
     var list : [Project] = []
     var cellid = "cellid"
     
-    //MARK: UI
-    var tableView : UITableView = {
-        var tableView = UITableView()
-        tableView.translatesAutoresizingMaskIntoConstraints = false
-        tableView.separatorColor = .none
-        return tableView
-    }()
-    
     override func viewDidLoad() {
-        
-        tableView.dataSource = self
-        tableView.delegate = self
+        callNetwork()
+        setTableView()
+    }
+    
+    private func setTableView() {
+        self.view.backgroundColor = .white
+        tableView.separatorColor = .none
         tableView.register(ProjectTableViewCell.self, forCellReuseIdentifier: cellid)
         
-        setupView()
-        callNetwork()
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(image: .add, landscapeImagePhone: .add, style: .plain, target: self, action: #selector(addProjectAction))
     }
     
     
@@ -49,11 +43,9 @@ class ProjectController: UIViewController {
                 }
             case .failure(let error):
                 print(error)
-                
             }
         }
     }
-    
   
     //MARK: ACTION
     @objc
@@ -72,41 +64,19 @@ class ProjectController: UIViewController {
     
 }
 
-//MARK: SetupView
-extension ProjectController : ViewCode {
-    func buildViewHierarchy() {
-        self.view.addSubview(tableView)
-    }
-    
-    func setupConstraints() {
-        NSLayoutConstraint.activate([
-            tableView.topAnchor.constraint(equalTo: view.topAnchor),
-            tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
-            tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor)
-        ])
-    }
-    
-    func setupAdditionalConfiguration() {
-        self.view.backgroundColor = .white
-        
-        self.navigationItem.rightBarButtonItem = UIBarButtonItem(image: .add, landscapeImagePhone: .add, style: .plain, target: self, action: #selector(addProjectAction))
-    }
-}
-
 //MARK: TableView
-extension ProjectController : UITableViewDataSource , UITableViewDelegate {
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+extension ProjectController {
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return list.count
     }
     
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: cellid, for: indexPath) as! ProjectTableViewCell
         cell.dayLabel.text = list[indexPath.row].title
         return cell
     }
     
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let projectSelected = list[indexPath.row]
         
         let collectionFlow = UICollectionViewFlowLayout()
@@ -119,7 +89,7 @@ extension ProjectController : UITableViewDataSource , UITableViewDelegate {
         self.navigationController?.pushViewController(boardVC, animated: true)
     }
     
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 70
     }
 }
