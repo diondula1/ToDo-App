@@ -405,6 +405,7 @@
 		ADCF79C82886EBAC00703774 /* Authentication */ = {
 			isa = PBXGroup;
 			children = (
+				BCAEA3012899ABDA001110C4 /* Project */,
 				ADCF79CD28872C1300703774 /* Register */,
 				ADCF79CA2886F9F900703774 /* Login */,
 			);
@@ -442,6 +443,13 @@
 				ADCF79D1288767BB00703774 /* ValueSpy.swift */,
 			);
 			path = Helpers;
+			sourceTree = "<group>";
+		};
+		BCAEA3012899ABDA001110C4 /* Project */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Project;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

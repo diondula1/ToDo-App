@@ -41,13 +41,16 @@ class RootController {
 class MainRouter {
     var navigation: UINavigationController
     
-    internal init(navigation: UINavigationController) {
+    init(navigation: UINavigationController) {
         self.navigation = navigation
     }
     
-    
     func start() {
-        let viewController = MenuBarViewController()
+        let viewController = MenuBarViewController(
+            projectVC: ProjectController(),
+            notificationVC: NotificationController(),
+            settingsVC: SettingController())
+        
         viewController.modalPresentationStyle = .fullScreen
         viewController.modalTransitionStyle = .crossDissolve
         navigation.present(viewController, animated: true)
@@ -58,7 +61,7 @@ class AuthenticationRouter {
     var navigation: UINavigationController
     var loginCompleted: ((User) -> ())?
     
-    internal init(navigation: UINavigationController) {
+    init(navigation: UINavigationController) {
         self.navigation = navigation
     }
     
@@ -81,7 +84,7 @@ class AuthenticationRouter {
         let service = RegisterService()
         let viewModel = RegisterViewModel(service: service)
         let newViewController = RegisterViewController(viewModel: viewModel)
-         
+        
         newViewController.registerCompleted = { user in
             self.loginCompleted?(user)
         }
