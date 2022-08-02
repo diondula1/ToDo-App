@@ -18,7 +18,7 @@ class RootController {
     }
     
     func start() {
-        user.token.isEmpty ? callAuthentication() : moveToMainViewController()
+        user.token.isEmpty ? callAuthentication() : callMain()
     }
     
     func callAuthentication() {
@@ -28,11 +28,25 @@ class RootController {
         authentication.loginCompleted = { user in
             UserDefaultsData.token = user.token
             UserDefaultsData.id = user.id
-            self.moveToMainViewController()
+            self.callMain()
         }
     }
     
-    func moveToMainViewController() {
+    func callMain() {
+        let mainRouter = MainRouter(navigation: navigation)
+        mainRouter.start()
+    }
+}
+
+class MainRouter {
+    var navigation: UINavigationController
+    
+    internal init(navigation: UINavigationController) {
+        self.navigation = navigation
+    }
+    
+    
+    func start() {
         let viewController = MenuBarViewController()
         viewController.modalPresentationStyle = .fullScreen
         viewController.modalTransitionStyle = .crossDissolve
