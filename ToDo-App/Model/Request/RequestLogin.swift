@@ -6,7 +6,7 @@
 //
 
 import UIKit
-struct RequestLogin : Encodable {
-    var Username : String
-    var Password : String
+struct RequestLogin: Codable {
+    var Username: String
+    var Password: String
 }

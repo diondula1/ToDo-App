@@ -15,17 +15,15 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         guard let windowScene = (scene as? UIWindowScene) else { return }
         let window = UIWindow(windowScene: windowScene)
-        
-        /// 3. Create a view hierarchy programmatically
-        let viewController = LoginController()
-        let navigation = UINavigationController(rootViewController: viewController)
-        navigation.navigationBar.isTranslucent = false
-        /// 4. Set the root view controller of the window with your view controller
-        window.rootViewController = navigation
-        
-        /// 5. Set the window and call makeKeyAndVisible()
+  
         self.window = window
+        let navConroller = UINavigationController()
+        
+        //TODO: Refactor this part ... it should not be this way to get data from userDefaults here :)
+        let vc = RootController(navigation: navConroller, user: User(id: UserDefaultsData.id, username: UserDefaultsData.username, token: UserDefaultsData.token))
+        window.rootViewController = navConroller
         window.makeKeyAndVisible()
+        vc.start()
     }
 
     func sceneDidDisconnect(_ scene: UIScene) {
