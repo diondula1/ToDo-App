@@ -49,9 +49,9 @@ class AuthenticationRouter {
     }
     
     func start() {
-        let service = LoginService()
+        let service = LoginServiceMock()
         let viewModel = LoginViewModel(service: service)
-        let viewController = LoginController(viewModel: viewModel)
+        let viewController = LoginViewController(viewModel: viewModel)
         navigation.pushViewController(viewController, animated: true)
         
         viewController.loginCompleted = { user in

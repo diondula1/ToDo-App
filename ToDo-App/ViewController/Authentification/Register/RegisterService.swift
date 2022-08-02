@@ -7,7 +7,11 @@
 
 import Foundation
 
-class RegisterService {
+protocol RegisterServiceProtocol {
+    func register(with requestRegister: RequestRegister) async throws -> ReturnObject<User>
+}
+
+class RegisterService: RegisterServiceProtocol {
     func register(with requestRegister: RequestRegister) async throws -> ReturnObject<User> {
         let url = URL(string: "http://127.0.0.1:3000/api/auth/register")!
         var request = URLRequest(url: url)
@@ -17,5 +21,19 @@ class RegisterService {
         let user = try JSONDecoder().decode(ReturnObject<User>.self, from: data)
         
         return user
+    }
+}
+
+class RegisterServiceMock: RegisterServiceProtocol {
+    let isSuccess: Bool
+    let user: User
+    
+    init(isSuccess: Bool = true, user: User = User(id: "Dion", username: "Dion", token: "123")) {
+        self.isSuccess = isSuccess
+        self.user = user
+    }
+    
+    func register(with requestRegister: RequestRegister) -> ReturnObject<User> {
+        ReturnObject(success: isSuccess, message: "", status: 400, data: user)
     }
 }

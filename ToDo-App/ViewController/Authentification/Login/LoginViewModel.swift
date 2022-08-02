@@ -8,43 +8,59 @@
 import UIKit
 import Combine
 
-enum State<T> {
+enum State<T>: Equatable where T: Equatable {
+    static func == (lhs: State<T>, rhs: State<T>) -> Bool {
+        switch (lhs, rhs) {
+        case let (.success(object: lhsObject),.success(object: rhsObject)):
+            return lhsObject == rhsObject
+        case (.loading, .loading):
+            return true
+        case (.error(error: let lhsError), .error(error: let rhsError)):
+            return lhsError == rhsError
+        case (.none, .none):
+            return true
+        default:
+            return false
+        }
+    }
+    
     case loading
-    case error(error: Error)
+    case error(error: LoginError)
     case success(object: T)
     case none
 }
 
-enum LoginError: Error {
+enum LoginError: Error, Equatable {
     case notAuthorized
 }
 
 class LoginViewModel {
-    
-    
-    let service: LoginService
+    let service: LoginServiceProtocol
     var cancellables = Set<AnyCancellable>()
     
     @Published var username: String = ""
     @Published var password: String = ""
     @Published var state: State<User> = .none
     
-    init(service: LoginService) {
+    init(service: LoginServiceProtocol) {
         self.service = service
     }
     
     func loginTouch() {
+        Task {
+            let requestLogin = RequestLogin(Username: username, Password: password)
+            await fetchResults(with: requestLogin)
+        }
+    }
+    
+    func fetchResults(with requestLogin: RequestLogin) async {
         state = .loading
         
-        Task {
-            do {
-                let requestLogin = RequestLogin(Username: username, Password: password)
-                
-                let user = try await LoginService().login(requestLogin: requestLogin)
-                state = user.success ? .success(object: user.data!) : .error(error: LoginError.notAuthorized)
-            } catch {
-                state = .error(error: error)
-            }
+        do {
+            let user = try await service.login(requestLogin: requestLogin)
+            state = user.success ? .success(object: user.data!) : .error(error: LoginError.notAuthorized)
+        } catch {
+            state = .error(error: LoginError.notAuthorized)
         }
     }
 }

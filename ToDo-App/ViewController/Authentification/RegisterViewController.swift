@@ -47,7 +47,7 @@ class RegisterViewController: UIViewController {
             }.store(in: &anyCancellable)
         
         registerView.registerClicked = {
-            self.viewModel.registerAction()
+            self.viewModel.registerTouch()
         }
     }
     
@@ -55,15 +55,6 @@ class RegisterViewController: UIViewController {
         view.backgroundColor = .white
         view.addSubview(registerView)
         registerView.frame = view.bounds
-    }
-  
-    func moveToMainView() {
-        let navigationController = MenuBarViewController()
-        navigationController.modalPresentationStyle = .fullScreen
-        navigationController.modalTransitionStyle = .crossDissolve
-        self.present(navigationController, animated: true, completion: nil)
-        
-        registerView.clearTextField()
     }
     
     required init?(coder: NSCoder) {
